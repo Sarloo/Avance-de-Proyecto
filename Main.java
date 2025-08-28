@@ -258,3 +258,89 @@ public void completarTareaAdministrativa(int id) {
                 System.out.println("Opcion no valida");
         }
     }
+    private void mostrarMenuVerTareas() {
+        System.out.println("\n=== VER TAREAS ===");
+        System.out.println("1. Ver todas las tareas pendientes");
+        System.out.println("2. Ver tareas urgentes");
+        System.out.println("3. Ver recetas");
+        System.out.println("4. Ver tareas de inventario");
+        System.out.println("5. Ver tareas administrativas");
+        System.out.println("6. Ver todas las tareas (incluyendo completadas)");
+        System.out.print("Seleccione: ");
+        
+        int opcion = leerEntero();
+        
+        switch (opcion) {
+            case 1:
+                mostrarTodasLasTareas();
+                break;
+            case 2:
+                System.out.println("\n--- TAREAS URGENTES ---");
+                pilaUrgentes.mostrar();
+                break;
+            case 3:
+                System.out.println("\n--- RECETAS ---");
+                colaRecetas.mostrar();
+                break;
+            case 4:
+                System.out.println("\n--- TAREAS DE INVENTARIO ---");
+                listaInventario.mostrar();
+                break;
+            case 5:
+                System.out.println("\n--- TAREAS ADMINISTRATIVAS ---");
+                listaAdministrativas.mostrar();
+                break;
+            case 6:
+                mostrarTodasLasTareasCompletadas();
+                break;
+            default:
+                System.out.println("Opcion no valida");
+        }
+    }
+
+    private void mostrarMenuEliminarTareas() {
+        System.out.println("\n=== ELIMINAR TAREAS PERMANENTEMENTE ===");
+        System.out.println("1. Eliminar tarea de inventario");
+        System.out.println("2. Eliminar tarea administrativa");
+        System.out.print("Seleccione: ");
+        
+        int opcion = leerEntero();
+        
+        switch (opcion) {
+            case 1:
+                System.out.print("Ingrese el ID de la tarea de inventario a eliminar: ");
+                int idInventario = leerEntero();
+                eliminarTareaInventario(idInventario);
+                break;
+            case 2:
+                System.out.print("Ingrese el ID de la tarea administrativa a eliminar: ");
+                int idAdmin = leerEntero();
+                eliminarTareaAdministrativa(idAdmin);
+                break;
+            default:
+                System.out.println("Opcion no valida");
+        }
+    }
+
+    private int leerEntero() {
+        while (true) {
+            try {
+                String input = scanner.nextLine().trim();
+                if (input.isEmpty()) {
+                    System.out.print("Por favor, ingrese un numero valido: ");
+                    continue;
+                }
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.print("Por favor, ingrese un numero valido: ");
+            }
+        }
+    }
+
+    // Método principal
+    public static void main(String[] args) {
+        Main sistema = new Main();
+        System.out.println("Bienvenido al Sistema de Gestion de Tareas para Farmacia");
+        sistema.mostrarMenuPrincipal();
+    }
+}
