@@ -169,3 +169,92 @@ public void completarTareaAdministrativa(int id) {
         System.out.println("Tareas administrativas pendientes: " + listaAdministrativas.tareasPendientes());
         System.out.println("Total de tareas creadas: " + (contadorId - 1));
     }
+
+    // Interfaz de usuario
+    public void mostrarMenuPrincipal() {
+        while (true) {
+            System.out.println("\n=== SISTEMA DE GESTION - FARMACIA ===");
+            System.out.println("1. Agregar nueva tarea");
+            System.out.println("2. Procesar tarea urgente");
+            System.out.println("3. Procesar receta medica");
+            System.out.println("4. Ver tareas");
+            System.out.println("5. Completar tarea de inventario");
+            System.out.println("6. Completar tarea administrativa");
+            System.out.println("7. Eliminar tarea permanentemente");
+            System.out.println("8. Mostrar estadisticas");
+            System.out.println("9. Salir");
+            System.out.print("Seleccione una opcion: ");
+
+            int opcion = leerEntero();
+
+            switch (opcion) {
+                case 1:
+                    mostrarMenuAgregarTarea();
+                    break;
+                case 2:
+                    procesarTareaUrgente();
+                    break;
+                case 3:
+                    procesarReceta();
+                    break;
+                case 4:
+                    mostrarMenuVerTareas();
+                    break;
+                case 5:
+                    System.out.print("Ingrese el ID de la tarea de inventario a completar: ");
+                    int idInventario = leerEntero();
+                    completarTareaInventario(idInventario);
+                    break;
+                case 6:
+                    System.out.print("Ingrese el ID de la tarea administrativa a completar: ");
+                    int idAdmin = leerEntero();
+                    completarTareaAdministrativa(idAdmin);
+                    break;
+                case 7:
+                    mostrarMenuEliminarTareas();
+                    break;
+                case 8:
+                    mostrarEstadisticas();
+                    break;
+                case 9:
+                    System.out.println("¡Gracias por usar el sistema de la farmacia!");
+                    return;
+                default:
+                    System.out.println("Opcion no valida. Intente nuevamente.");
+            }
+        }
+    }
+
+    private void mostrarMenuAgregarTarea() {
+        System.out.println("\n=== AGREGAR NUEVA TAREA ===");
+        System.out.println("1. Tarea urgente (entrega inmediata)");
+        System.out.println("2. Receta medica");
+        System.out.println("3. Tarea de inventario");
+        System.out.println("4. Tarea administrativa");
+        System.out.print("Seleccione el tipo de tarea: ");
+        
+        int tipo = leerEntero();
+        
+        System.out.print("Descripcion de la tarea: ");
+        String descripcion = scanner.nextLine();
+        
+        // Seleccionar prioridad para todos los tipos de tarea
+        String prioridad = seleccionarPrioridad();
+        
+        switch (tipo) {
+            case 1:
+                agregarTareaUrgente(descripcion, prioridad);
+                break;
+            case 2:
+                agregarReceta(descripcion, prioridad);
+                break;
+            case 3:
+                agregarTareaInventario(descripcion, prioridad);
+                break;
+            case 4:
+                agregarTareaAdministrativa(descripcion, prioridad);
+                break;
+            default:
+                System.out.println("Opcion no valida");
+        }
+    }
