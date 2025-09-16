@@ -1,142 +1,183 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Collections;
-import java.util.Comparator;
-
+// Implementación de una lista enlazada usando nodos
 public class ListaTareas {
-    private ArrayList<TareaFarmacia> elementos;
+    private Node cabeza; // Referencia al primer nodo de la lista
+    private int tamaño; // Contador del tamaño de la lista
 
+    // Constructor para inicializar una lista vacía
     public ListaTareas() {
-        elementos = new ArrayList<>();
+        cabeza = null; // Inicializar cabeza como nula
+        tamaño = 0; // Inicializar tamaño en 0
     }
 
-    // Insertar elemento en la lista
+    // Método para insertar una tarea al final de la lista
     public void insertar(TareaFarmacia tarea) {
-        elementos.add(tarea);
+        Node nuevoNodo = new Node(tarea); // Crear nuevo nodo con la tarea
+        if (cabeza == null) { // Verificar si la lista está vacía
+            cabeza = nuevoNodo; // La cabeza apunta al nuevo nodo
+        } else {
+            Node actual = cabeza; // Empezar desde la cabeza
+            while (actual.getSiguiente() != null) { // Buscar el último nodo
+                actual = actual.getSiguiente(); // Mover al siguiente nodo
+            }
+            actual.setSiguiente(nuevoNodo); // El último nodo apunta al nuevo
+        }
+        tamaño++; // Incrementar el tamaño
     }
 
-    // Marcar como completada en lugar de eliminar
+    // Método para completar una tarea específica por ID
     public boolean completarTarea(int id) {
-        for (TareaFarmacia tarea : elementos) {
-            if (tarea.getId() == id && !tarea.estaCompletada()) {
-                tarea.setEstado("COMPLETADA");
-                return true;
+        Node actual = cabeza; // Empezar desde la cabeza
+        while (actual != null) { // Recorrer todos los nodos
+            TareaFarmacia tarea = actual.getTarea(); // Obtener tarea del nodo actual
+            if (tarea.getId() == id && !tarea.estaCompletada()) { // Buscar por ID y verificar estado
+                tarea.setEstado("COMPLETADA"); // Cambiar estado a COMPLETADA
+                return true; // Retornar éxito
             }
+            actual = actual.getSiguiente(); // Mover al siguiente nodo
         }
-        return false;
+        return false; // Retornar fracaso si no se encontró
     }
 
-    // Eliminar elemento por ID (opcional)
+    // Método para eliminar una tarea por ID
     public boolean eliminar(int id) {
-        Iterator<TareaFarmacia> iterator = elementos.iterator();
-        while (iterator.hasNext()) {
-            TareaFarmacia tarea = iterator.next();
-            if (tarea.getId() == id) {
-                iterator.remove();
-                return true;
-            }
+        if (cabeza == null) { // Verificar si la lista está vacía
+            return false; // Retornar fracaso
         }
-        return false;
+        
+        // Caso especial: eliminar la cabeza
+        if (cabeza.getTarea().getId() == id) { // Verificar si la cabeza es el objetivo
+            cabeza = cabeza.getSiguiente(); // La cabeza ahora es el siguiente nodo
+            tamaño--; // Decrementar tamaño
+            return true; // Retornar éxito
+        }
+        
+        // Buscar el nodo a eliminar
+        Node actual = cabeza; // Empezar desde la cabeza
+        while (actual.getSiguiente() != null) { // Recorrer hasta el penúltimo nodo
+            if (actual.getSiguiente().getTarea().getId() == id) { // Verificar si el siguiente es el objetivo
+                actual.setSiguiente(actual.getSiguiente().getSiguiente()); // Saltar el nodo objetivo
+                tamaño--; // Decrementar tamaño
+                return true; // Retornar éxito
+            }
+            actual = actual.getSiguiente(); // Mover al siguiente nodo
+        }
+        return false; // Retornar fracaso si no se encontró
     }
 
-    // Buscar elemento por ID
+    // Método para buscar una tarea por ID
     public TareaFarmacia buscar(int id) {
-        for (TareaFarmacia tarea : elementos) {
-            if (tarea.getId() == id) {
-                return tarea;
+        Node actual = cabeza; // Empezar desde la cabeza
+        while (actual != null) { // Recorrer todos los nodos
+            TareaFarmacia tarea = actual.getTarea(); // Obtener tarea del nodo actual
+            if (tarea.getId() == id) { // Buscar por ID
+                return tarea; // Retornar tarea encontrada
             }
+            actual = actual.getSiguiente(); // Mover al siguiente nodo
         }
-        return null;
+        return null; // Retornar null si no se encontró
     }
 
-    // Buscar elementos por tipo
-    public ArrayList<TareaFarmacia> buscarPorTipo(String tipo) {
-        ArrayList<TareaFarmacia> resultado = new ArrayList<>();
-        for (TareaFarmacia tarea : elementos) {
-            if (tarea.getTipo().equalsIgnoreCase(tipo)) {
-                resultado.add(tarea);
+    // Método para buscar tareas por tipo
+    public java.util.ArrayList<TareaFarmacia> buscarPorTipo(String tipo) {
+        java.util.ArrayList<TareaFarmacia> resultado = new java.util.ArrayList<>(); // Crear lista de resultados
+        Node actual = cabeza; // Empezar desde la cabeza
+        while (actual != null) { // Recorrer todos los nodos
+            TareaFarmacia tarea = actual.getTarea(); // Obtener tarea del nodo actual
+            if (tarea.getTipo().equalsIgnoreCase(tipo)) { // Buscar por tipo (case insensitive)
+                resultado.add(tarea); // Agregar a resultados
             }
+            actual = actual.getSiguiente(); // Mover al siguiente nodo
         }
-        return resultado;
+        return resultado; // Retornar resultados
     }
 
-    // Verificar si la lista está vacía
+    // Método para verificar si la lista está vacía
     public boolean estaVacia() {
-        return elementos.isEmpty();
+        return cabeza == null; // Retornar true si cabeza es nula
     }
 
-    // Obtener tamaño de la lista
+    // Método para obtener el tamaño de la lista
     public int tamanio() {
-        return elementos.size();
+        return tamaño; // Retornar tamaño
     }
 
-    // Obtener número de tareas pendientes
+    // Método para contar tareas pendientes
     public int tareasPendientes() {
-        int count = 0;
-        for (TareaFarmacia tarea : elementos) {
-            if (!tarea.estaCompletada()) {
-                count++;
+        int count = 0; // Contador inicializado en 0
+        Node actual = cabeza; // Empezar desde la cabeza
+        while (actual != null) { // Recorrer todos los nodos
+            if (!actual.getTarea().estaCompletada()) { // Verificar si está pendiente
+                count++; // Incrementar contador
             }
+            actual = actual.getSiguiente(); // Mover al siguiente nodo
         }
-        return count;
+        return count; // Retornar cantidad de pendientes
     }
 
-    // Mostrar tareas ordenadas: pendientes primero (por prioridad), luego completadas
+    // Método para mostrar tareas ordenadas por prioridad
     public void mostrar() {
-        ArrayList<TareaFarmacia> pendientes = new ArrayList<>();
-        ArrayList<TareaFarmacia> completadas = new ArrayList<>();
-        
-        for (TareaFarmacia tarea : elementos) {
-            if (!tarea.estaCompletada()) {
-                pendientes.add(tarea);
-            } else {
-                completadas.add(tarea);
-            }
+        if (estaVacia()) { // Verificar si la lista está vacía
+            System.out.println("No hay tareas"); // Mostrar mensaje
+            return; // Salir del método
         }
         
-        if (pendientes.isEmpty() && completadas.isEmpty()) {
-            System.out.println("No hay tareas");
-            return;
+        // Crear listas separadas para pendientes y completadas
+        java.util.ArrayList<TareaFarmacia> pendientes = new java.util.ArrayList<>();
+        java.util.ArrayList<TareaFarmacia> completadas = new java.util.ArrayList<>();
+        
+        Node actual = cabeza; // Empezar desde la cabeza
+        while (actual != null) { // Recorrer todos los nodos
+            TareaFarmacia tarea = actual.getTarea(); // Obtener tarea del nodo actual
+            if (!tarea.estaCompletada()) { // Verificar si está pendiente
+                pendientes.add(tarea); // Agregar a pendientes
+            } else {
+                completadas.add(tarea); // Agregar a completadas
+            }
+            actual = actual.getSiguiente(); // Mover al siguiente nodo
         }
         
         // Ordenar pendientes por prioridad
         ordenarPorPrioridad(pendientes);
         
         System.out.println("=== TAREAS PENDIENTES (Ordenadas por Prioridad) ===");
-        if (pendientes.isEmpty()) {
-            System.out.println("No hay tareas pendientes");
+        if (pendientes.isEmpty()) { // Verificar si hay pendientes
+            System.out.println("No hay tareas pendientes"); // Mostrar mensaje
         } else {
-            for (int i = 0; i < pendientes.size(); i++) {
-                System.out.println((i + 1) + ". " + pendientes.get(i));
+            for (int i = 0; i < pendientes.size(); i++) { // Recorrer pendientes
+                System.out.println((i + 1) + ". " + pendientes.get(i)); // Mostrar tarea
             }
         }
         
         System.out.println("\n=== TAREAS COMPLETADAS ===");
-        if (completadas.isEmpty()) {
-            System.out.println("No hay tareas completadas");
+        if (completadas.isEmpty()) { // Verificar si hay completadas
+            System.out.println("No hay tareas completadas"); // Mostrar mensaje
         } else {
-            for (int i = 0; i < completadas.size(); i++) {
-                System.out.println((i + 1) + ". " + completadas.get(i));
+            for (int i = 0; i < completadas.size(); i++) { // Recorrer completadas
+                System.out.println((i + 1) + ". " + completadas.get(i)); // Mostrar tarea
             }
         }
     }
 
-    // Mostrar todas las tareas (completadas al final)
+    // Método para mostrar todas las tareas
     public void mostrarTodas() {
-        if (estaVacia()) {
-            System.out.println("La lista esta vacia");
-            return;
+        if (estaVacia()) { // Verificar si la lista está vacía
+            System.out.println("La lista esta vacia"); // Mostrar mensaje
+            return; // Salir del método
         }
         
-        ArrayList<TareaFarmacia> pendientes = new ArrayList<>();
-        ArrayList<TareaFarmacia> completadas = new ArrayList<>();
+        // Crear listas separadas para pendientes y completadas
+        java.util.ArrayList<TareaFarmacia> pendientes = new java.util.ArrayList<>();
+        java.util.ArrayList<TareaFarmacia> completadas = new java.util.ArrayList<>();
         
-        for (TareaFarmacia tarea : elementos) {
-            if (!tarea.estaCompletada()) {
-                pendientes.add(tarea);
+        Node actual = cabeza; // Empezar desde la cabeza
+        while (actual != null) { // Recorrer todos los nodos
+            TareaFarmacia tarea = actual.getTarea(); // Obtener tarea del nodo actual
+            if (!tarea.estaCompletada()) { // Verificar si está pendiente
+                pendientes.add(tarea); // Agregar a pendientes
             } else {
-                completadas.add(tarea);
+                completadas.add(tarea); // Agregar a completadas
             }
+            actual = actual.getSiguiente(); // Mover al siguiente nodo
         }
         
         // Ordenar pendientes por prioridad
@@ -145,47 +186,54 @@ public class ListaTareas {
         System.out.println("=== TODAS LAS TAREAS ===");
         
         System.out.println("\n--- PENDIENTES ---");
-        if (pendientes.isEmpty()) {
-            System.out.println("No hay tareas pendientes");
+        if (pendientes.isEmpty()) { // Verificar si hay pendientes
+            System.out.println("No hay tareas pendientes"); // Mostrar mensaje
         } else {
-            for (int i = 0; i < pendientes.size(); i++) {
-                System.out.println((i + 1) + ". " + pendientes.get(i));
+            for (int i = 0; i < pendientes.size(); i++) { // Recorrer pendientes
+                System.out.println((i + 1) + ". " + pendientes.get(i)); // Mostrar tarea
             }
         }
         
         System.out.println("\n--- COMPLETADAS ---");
-        if (completadas.isEmpty()) {
-            System.out.println("No hay tareas completadas");
+        if (completadas.isEmpty()) { // Verificar si hay completadas
+            System.out.println("No hay tareas completadas"); // Mostrar mensaje
         } else {
-            for (int i = 0; i < completadas.size(); i++) {
-                System.out.println((i + 1) + ". " + completadas.get(i));
+            for (int i = 0; i < completadas.size(); i++) { // Recorrer completadas
+                System.out.println((i + 1) + ". " + completadas.get(i)); // Mostrar tarea
             }
         }
     }
 
-    // Método para ordenar por prioridad
-    private void ordenarPorPrioridad(ArrayList<TareaFarmacia> lista) {
-        Collections.sort(lista, new Comparator<TareaFarmacia>() {
+    // Método auxiliar para ordenar por prioridad
+    private void ordenarPorPrioridad(java.util.ArrayList<TareaFarmacia> lista) {
+        java.util.Collections.sort(lista, new java.util.Comparator<TareaFarmacia>() {
             @Override
             public int compare(TareaFarmacia t1, TareaFarmacia t2) {
-                int valor1 = obtenerValorPrioridad(t1.getPrioridad());
-                int valor2 = obtenerValorPrioridad(t2.getPrioridad());
-                return Integer.compare(valor2, valor1);
+                int valor1 = obtenerValorPrioridad(t1.getPrioridad()); // Obtener valor numérico de prioridad 1
+                int valor2 = obtenerValorPrioridad(t2.getPrioridad()); // Obtener valor numérico de prioridad 2
+                return Integer.compare(valor2, valor1); // Comparar (orden descendente)
             }
             
+            // Método para convertir prioridad en valor numérico
             private int obtenerValorPrioridad(String prioridad) {
-                switch (prioridad.toUpperCase()) {
-                    case "ALTA": return 3;
-                    case "MEDIA": return 2;
-                    case "BAJA": return 1;
-                    default: return 0;
+                switch (prioridad.toUpperCase()) { // Convertir a mayúsculas para comparar
+                    case "ALTA": return 3; // Alta = 3
+                    case "MEDIA": return 2; // Media = 2
+                    case "BAJA": return 1; // Baja = 1
+                    default: return 0; // Desconocida = 0
                 }
             }
         });
     }
 
-    // Obtener todos los elementos
-    public ArrayList<TareaFarmacia> getElementos() {
-        return new ArrayList<>(elementos);
+    // Método para obtener todos los elementos (para compatibilidad)
+    public java.util.ArrayList<TareaFarmacia> getElementos() {
+        java.util.ArrayList<TareaFarmacia> resultado = new java.util.ArrayList<>(); // Crear lista
+        Node actual = cabeza; // Empezar desde la cabeza
+        while (actual != null) { // Recorrer todos los nodos
+            resultado.add(actual.getTarea()); // Agregar tarea a la lista
+            actual = actual.getSiguiente(); // Mover al siguiente nodo
+        }
+        return resultado; // Retornar lista
     }
 }
