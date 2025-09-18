@@ -1,10 +1,8 @@
-
-
 // Clase que representa una tarea en la farmacia
 public class TareaFarmacia {
     private int id; // Identificador único de la tarea
     private String descripcion; // Descripción de la tarea
-    private String tipo; // Tipo: "URGENTE", "RECETA", "INVENTARIO", "ADMINISTRATIVA"
+    private String tipo; // Tipo: "URGENTE", "RECETA", "INVENTARIO", "ADMINISTRATIVA", "PRIORITARIA"
     private String prioridad; // Prioridad: "ALTA", "MEDIA", "BAJA"
     private String fechaCreacion; // Fecha de creación de la tarea
     private String estado; // Estado: "PENDIENTE", "EN_PROCESO", "COMPLETADA"

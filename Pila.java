@@ -91,9 +91,9 @@ public class Pila {
         while (actual != null) { // Recorrer todos los nodos
             TareaFarmacia tarea = actual.getTarea(); // Obtener tarea del nodo actual
             if (!tarea.estaCompletada()) { // Verificar si está pendiente
-                pendientes.add(tarea); // Agregar a pendientes
+                pendientes.add(tarea); // Agregar to pendientes
             } else {
-                completadas.add(tarea); // Agregar a completadas
+                completadas.add(tarea); // Agregar to completadas
             }
             actual = actual.getSiguiente(); // Mover al siguiente nodo
         }
@@ -135,9 +135,9 @@ public class Pila {
         while (actual != null) { // Recorrer todos los nodos
             TareaFarmacia tarea = actual.getTarea(); // Obtener tarea del nodo actual
             if (!tarea.estaCompletada()) { // Verificar si está pendiente
-                pendientes.add(tarea); // Agregar a pendientes
+                pendientes.add(tarea); // Agregar to pendientes
             } else {
-                completadas.add(tarea); // Agregar a completadas
+                completadas.add(tarea); // Agregar to completadas
             }
             actual = actual.getSiguiente(); // Mover al siguiente nodo
         }
