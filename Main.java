@@ -1,13 +1,21 @@
+<<<<<<< HEAD
 //
+=======
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+=======
+
+// CLASE COLA INTEGRADA EN MAIN.JAVA
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
 class Cola {
     private Node frente; // Referencia al primer nodo de la cola
     private Node fin; // Referencia al último nodo de la cola
@@ -42,6 +50,7 @@ class Cola {
         TareaFarmacia tarea = frente.getTarea(); // Obtener tarea del frente
         if (!tarea.estaCompletada()) { // Verificar si no está completada
             tarea.setEstado("COMPLETADA"); // Cambiar estado a COMPLETADA
+<<<<<<< HEAD
         }
         
         // Remover la tarea procesada
@@ -52,6 +61,16 @@ class Cola {
         }
         
         return tarea; // Retornar tarea procesada
+=======
+            frente = frente.getSiguiente(); // Avanzar el frente
+            tamaño--; // Decrementar tamaño
+            if (frente == null) { // Si la cola queda vacía
+                fin = null; // Actualizar fin
+            }
+            return tarea; // Retornar tarea procesada
+        }
+        return null; // Retornar null si ya estaba completada
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
     }
 
     // Método para completar una tarea específica por ID
@@ -229,7 +248,10 @@ public class Main {
     private static Cola colaRecetas = new Cola();
     private static ColaPrioridad colaPrioridad = new ColaPrioridad();
     private static ListaTareas listaGeneral = new ListaTareas();
+<<<<<<< HEAD
     private static EmployeeManager gestorEmpleados = new EmployeeManager();
+=======
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
     private static int contadorId = 1;
     private static Scanner scanner = new Scanner(System.in);
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -238,9 +260,12 @@ public class Main {
     public static void main(String[] args) {
         int opcion; // Variable para almacenar la opción del menú
         
+<<<<<<< HEAD
         // Cargar algunos empleados de ejemplo
         cargarEmpleadosEjemplo();
         
+=======
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
         // Bucle principal del menú
         do {
             mostrarMenu(); // Mostrar el menú
@@ -278,6 +303,7 @@ public class Main {
                 case 10: // Mostrar estadísticas
                     mostrarEstadisticas();
                     break;
+<<<<<<< HEAD
                 case 11: // Gestión de empleados
                     gestionarEmpleados();
                     break;
@@ -287,6 +313,8 @@ public class Main {
                 case 13: // Mostrar tiempo estimado total de tareas pendientes
                     mostrarTiempoEstimadoTotal();
                     break;
+=======
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
                 case 0: // Salir
                     System.out.println("Saliendo del sistema..."); // Mensaje de despedida
                     break;
@@ -302,6 +330,7 @@ public class Main {
 
     // Método para mostrar el menú principal
     private static void mostrarMenu() {
+<<<<<<< HEAD
         System.out.println("=== SISTEMA DE GESTIÓN DE FARMACIA ===");
         System.out.println("1. Agregar nueva tarea");
         System.out.println("2. Procesar tarea urgente (Pila)");
@@ -318,6 +347,21 @@ public class Main {
         System.out.println("13. Mostrar tiempo estimado total de tareas pendientes");
         System.out.println("0. Salir");
         System.out.print("Seleccione una opción: ");
+=======
+        System.out.println("=== SISTEMA DE GESTIÓN DE FARMACIA ==="); // Título
+        System.out.println("1. Agregar nueva tarea"); // Opción 1
+        System.out.println("2. Procesar tarea urgente (Pila)"); // Opción 2
+        System.out.println("3. Procesar receta (Cola)"); // Opción 3
+        System.out.println("4. Procesar tarea prioritaria (Cola de Prioridad)"); // Nueva opción
+        System.out.println("5. Completar tarea específica por ID"); // Opción 4
+        System.out.println("6. Mostrar todas las tareas"); // Opción 5
+        System.out.println("7. Mostrar tareas pendientes"); // Opción 6
+        System.out.println("8. Buscar tarea por ID"); // Opción 7
+        System.out.println("9. Eliminar tarea"); // Opción 8
+        System.out.println("10. Mostrar estadísticas"); // Opción 9
+        System.out.println("0. Salir"); // Opción 0
+        System.out.print("Seleccione una opción: "); // Solicitar entrada
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
     }
 
     // Método para obtener una opción válida del usuario
@@ -368,7 +412,10 @@ public class Main {
         System.out.print("Seleccione el tipo (1-5): "); // Solicitar tipo
         
         int tipoOp = obtenerOpcion(); // Obtener opción de tipo
+<<<<<<< HEAD
         scanner.nextLine(); // Limpiar buffer
+=======
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
         String tipo = ""; // Variable para almacenar tipo
         
         // Asignar tipo según opción
@@ -384,6 +431,10 @@ public class Main {
         }
         
         // SEGUNDO: Solicitar descripción después del tipo
+<<<<<<< HEAD
+=======
+        scanner.nextLine(); // Limpiar buffer después de leer el número
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
         System.out.print("Descripción: "); // Solicitar descripción
         String descripcion = scanner.nextLine(); // Leer descripción
         
@@ -395,7 +446,10 @@ public class Main {
         System.out.print("Seleccione la prioridad (1-3): "); // Solicitar prioridad
         
         int prioridadOp = obtenerOpcion(); // Obtener opción de prioridad
+<<<<<<< HEAD
         scanner.nextLine(); // Limpiar buffer
+=======
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
         String prioridad = ""; // Variable para almacenar prioridad
         
         // Asignar prioridad según opción
@@ -412,6 +466,7 @@ public class Main {
         System.out.println("Fecha de la tarea:");
         String fecha = obtenerFecha(); // Obtener fecha válida
         
+<<<<<<< HEAD
         System.out.print("Tiempo estimado en minutos: "); // NUEVO CAMPO
         int tiempoEstimado = 0;
         while (true) {
@@ -427,6 +482,10 @@ public class Main {
         
         // Crear nueva tarea
         TareaFarmacia nuevaTarea = new TareaFarmacia(contadorId++, descripcion, tipo, prioridad, fecha, tiempoEstimado);
+=======
+        // Crear nueva tarea
+        TareaFarmacia nuevaTarea = new TareaFarmacia(contadorId++, descripcion, tipo, prioridad, fecha);
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
         
         // Agregar a la estructura correspondiente
         if (tipo.equals("URGENTE")) { // Si es urgente
@@ -597,7 +656,11 @@ public class Main {
             colaPrioridad.mostrar(); // Mostrar tareas prioritarias pendientes
         }
         
+<<<<<<< HEAD
         System.out.println("\n--- TAREAS GENERALES PENDientes ---"); // CORREGIDO
+=======
+        System.out.println("\n--- TAREAS GENERALES PENDIENTES ---"); // Subtítulo
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
         if (listaGeneral.estaVacia()) { // Verificar si la lista está vacía
             System.out.println("No hay tareas generales"); // Mensaje informativo
         } else {
@@ -734,6 +797,7 @@ public class Main {
             System.out.printf("Porcentaje de tareas completadas: %.2f%%\n", porcentajeCompletadas); // Mostrar porcentaje
         }
     }
+<<<<<<< HEAD
 
     // Método para cargar empleados de ejemplo
     private static void cargarEmpleadosEjemplo() {
@@ -1086,4 +1150,6 @@ private static void mostrarEmpleadosDisponibles() {
     }
 
     
+=======
+>>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
 }
