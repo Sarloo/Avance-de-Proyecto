@@ -207,10 +207,7 @@ public class ColaPrioridad {
     // Método auxiliar para ordenar por prioridad
     private void ordenarPorPrioridad(ArrayList<TareaFarmacia> lista) {
         Collections.sort(lista, new Comparator<TareaFarmacia>() {
-<<<<<<< HEAD
             @Override
-=======
->>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
             public int compare(TareaFarmacia t1, TareaFarmacia t2) {
                 return -comparar(t1, t2); // Orden descendente
             }

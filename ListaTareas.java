@@ -2,10 +2,7 @@
 public class ListaTareas {
     private Node cabeza; // Referencia al primer nodo de la lista
     private int tamaño; // Contador del tamaño de la lista
-<<<<<<< HEAD
     private java.util.HashMap<Integer, TareaFarmacia> mapaTareas = new java.util.HashMap<>();
-=======
->>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
 
     // Constructor para inicializar una lista vacía
     public ListaTareas() {
@@ -25,10 +22,7 @@ public class ListaTareas {
             }
             actual.setSiguiente(nuevoNodo); // El último nodo apunta al nuevo
         }
-<<<<<<< HEAD
         mapaTareas.put(tarea.getId(), tarea);
-=======
->>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
         tamaño++; // Incrementar el tamaño
     }
 
@@ -85,13 +79,10 @@ public class ListaTareas {
         return null; // Retornar null si no se encontró
     }
 
-<<<<<<< HEAD
     public TareaFarmacia buscarPorIdHash(int id) {
         return mapaTareas.get(id);
     }
 
-=======
->>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
     // Método para buscar tareas por tipo
     public java.util.ArrayList<TareaFarmacia> buscarPorTipo(String tipo) {
         java.util.ArrayList<TareaFarmacia> resultado = new java.util.ArrayList<>(); // Crear lista de resultados
@@ -106,7 +97,6 @@ public class ListaTareas {
         return resultado; // Retornar resultados
     }
 
-<<<<<<< HEAD
     // Método para buscar tareas por descripción
     public java.util.List<TareaFarmacia> buscarPorDescripcion(String texto) {
         java.util.List<TareaFarmacia> resultado = new java.util.ArrayList<>();
@@ -118,8 +108,6 @@ public class ListaTareas {
         return resultado;
     }
 
-=======
->>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
     // Método para verificar si la lista está vacía
     public boolean estaVacia() {
         return cabeza == null; // Retornar true si cabeza es nula
@@ -265,7 +253,6 @@ public class ListaTareas {
         }
         return resultado; // Retornar lista
     }
-<<<<<<< HEAD
 
     // Método recursivo para calcular tiempo estimado total de tareas pendientes
     public int tiempoTotalPendiente() {
@@ -304,6 +291,4 @@ public class ListaTareas {
         });
         return todas;
     }
-=======
->>>>>>> c260dc38702821dfef1e46ca702fc453cc19e75d
 }
