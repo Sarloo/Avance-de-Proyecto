@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructivo - Sistema de Farmacia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Sistema de Farmacia</h1>
+    <p>Instructivo y Guía de Uso</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#guia">Guía de Uso</a></li>
+      <li><a href="#tareafarmacia">TareaFarmacia</a></li>
+      <li><a href="#node">Node</a></li>
+      <li><a href="#pila">Pila</a></li>
+      <li><a href="#listatareas">ListaTareas</a></li>
+      <li><a href="#colaprioridad">ColaPrioridad</a></li>
+      <li><a href="#empleado">Empleado</a></li>
+      <li><a href="#employeenode">EmployeeNode</a></li>
+      <li><a href="#employeetree">EmployeeTree</a></li>
+      <li><a href="#employeemanager">EmployeeManager</a></li>
+      <li><a href="#main">Main</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Guía de Uso -->
+    <section id="guia">
+      <h2>Guía de Uso del Sistema</h2>
+      <ol>
+        <li>
+          <strong>Iniciar el sistema:</strong> Ejecuta <code>Main.java</code>. Se abrirá un menú interactivo en la consola.
+        </li>
+        <li>
+          <strong>Menú principal:</strong> Selecciona la opción deseada escribiendo el número correspondiente.
+          <p>Opciones comunes:</p>
+          <ul>
+            <li><strong>Agregar tarea:</strong> introduce ID, tipo, descripción, prioridad y tiempo estimado.</li>
+            <li><strong>Procesar tarea:</strong> selecciona si es urgente, receta, prioritaria o general.</li>
+            <li><strong>Completar/Eliminar tarea:</strong> ingresa el ID de la tarea a gestionar.</li>
+            <li><strong>Mostrar estadísticas:</strong> revisa tareas pendientes y tiempo estimado total.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Gestión de empleados:</strong>
+          <ul>
+            <li><strong>Agregar empleado:</strong> introduce ID, nombre, departamento, puesto y habilidades.</li>
+            <li><strong>Mostrar empleados por departamento:</strong> consulta la organización jerárquica.</li>
+            <li><strong>Buscar por ID o habilidad:</strong> facilita localizar empleados específicos.</li>
+            <li><strong>Asignar tareas:</strong> el sistema sugiere automáticamente el empleado más adecuado según carga y habilidades.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Consejos prácticos:</strong>
+          <ul>
+            <li>Mantén actualizada la carga de trabajo de los empleados para una asignación óptima.</li>
+            <li>Completa las tareas a tiempo para mantener la lista organizada.</li>
+            <li>Usa búsquedas por tipo y descripción para encontrar tareas rápidamente.</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Clase TareaFarmacia -->
+    <section id="tareafarmacia">
+      <h2>TareaFarmacia.java</h2>
+      <p>
+        Representa una tarea dentro de la farmacia, con atributos como ID único, descripción,
+        tipo (urgente, receta, inventario, administrativa o prioritaria), prioridad, fecha de
+        creación, estado y tiempo estimado.
+      </p>
+      <ul>
+        <li>Constructor inicializa atributos y estado PENDIENTE.</li>
+        <li>Métodos getter y setter para acceder y modificar.</li>
+        <li><code>estaCompletada()</code> verifica si está completada.</li>
+        <li><code>toString()</code> muestra representación textual.</li>
+      </ul>
+    </section>
+
+    <!-- Node.java -->
+    <section id="node">
+      <h2>Node.java</h2>
+      <p>
+        Elemento básico para construir estructuras enlazadas (listas, pilas y colas).
+        Contiene una <code>TareaFarmacia</code> y la referencia al siguiente nodo.
+      </p>
+      <ul>
+        <li>Constructor inicializa tarea y siguiente como nulo.</li>
+        <li>Getters y setters para tarea y siguiente nodo.</li>
+      </ul>
+    </section>
+
+    <!-- Pila.java -->
+    <section id="pila">
+      <h2>Pila.java</h2>
+      <p>
+        Representa una pila de tareas urgentes utilizando nodos enlazados.
+      </p>
+      <ul>
+        <li>Apilar nuevas tareas.</li>
+        <li>Procesar tarea más urgente.</li>
+        <li>Completar tarea por ID.</li>
+        <li>Consultar cima sin eliminar.</li>
+        <li>Verificar vacío y tamaño.</li>
+        <li>Mostrar tareas pendientes y completadas.</li>
+      </ul>
+    </section>
+
+    <!-- ListaTareas.java -->
+    <section id="listatareas">
+      <h2>ListaTareas.java</h2>
+      <p>
+        Implementa lista enlazada para gestionar tareas generales.
+      </p>
+      <ul>
+        <li>Insertar al final.</li>
+        <li>Completar o eliminar por ID.</li>
+        <li>Buscar por ID, tipo o descripción.</li>
+        <li>Contar pendientes.</li>
+        <li>Mostrar pendientes y completadas por prioridad.</li>
+        <li>Calcular tiempo total pendiente (recursivo).</li>
+        <li>Obtener tareas ordenadas por prioridad y fecha.</li>
+      </ul>
+    </section>
+
+    <!-- ColaPrioridad.java -->
+    <section id="colaprioridad">
+      <h2>ColaPrioridad.java</h2>
+      <p>
+        Cola de prioridad implementada con heap binario.
+      </p>
+      <ul>
+        <li>Insertar tareas.</li>
+        <li>Consultar mayor prioridad.</li>
+        <li>Procesar y completar por ID.</li>
+        <li>Mostrar todas ordenadas.</li>
+        <li>Comparación por estado → prioridad → fecha.</li>
+      </ul>
+    </section>
+
+    <!-- Empleado.java -->
+    <section id="empleado">
+      <h2>Empleado.java</h2>
+      <p>
+        Representa un trabajador de la farmacia con ID, nombre, departamento, puesto,
+        habilidades y carga de trabajo.
+      </p>
+      <ul>
+        <li>Verificar disponibilidad.</li>
+        <li>Asignar carga.</li>
+        <li>Comprobar habilidades.</li>
+        <li>Representación textual del empleado.</li>
+      </ul>
+    </section>
+
+    <!-- EmployeeNode.java -->
+    <section id="employeenode">
+      <h2>EmployeeNode.java</h2>
+      <p>
+        Nodo de un árbol binario de empleados.
+      </p>
+      <ul>
+        <li>Contiene un <code>Empleado</code>.</li>
+        <li>Referencias a hijo izquierdo y derecho.</li>
+        <li>Base para estructuras jerárquicas y búsquedas.</li>
+      </ul>
+    </section>
+
+    <!-- EmployeeTree.java -->
+    <section id="employeetree">
+      <h2>EmployeeTree.java</h2>
+      <p>
+        Árbol binario que organiza empleados por criterios configurables
+        (ID, nombre o carga de trabajo).
+      </p>
+      <ul>
+        <li>Insertar y buscar empleados.</li>
+        <li>Asignar tareas óptimas.</li>
+        <li>Consultar por departamento.</li>
+        <li>Mostrar estadísticas.</li>
+      </ul>
+    </section>
+
+    <!-- EmployeeManager.java -->
+    <section id="employeemanager">
+      <h2>EmployeeManager.java</h2>
+      <p>
+        Gestiona empleados utilizando árboles binarios y mapas, optimizando búsquedas y asignaciones.
+      </p>
+      <ul>
+        <li>Agregar empleados.</li>
+        <li>Asignar tareas de forma óptima.</li>
+        <li>Mostrar empleados disponibles por habilidades.</li>
+        <li>Distribuir cargas de trabajo con algoritmo divide y vencerás.</li>
+      </ul>
+    </section>
+
+    <!-- Main.java -->
+    <section id="main">
+      <h2>Main.java</h2>
+      <p>
+        Clase central que ejecuta el sistema de gestión de farmacia a través de un menú en consola.
+      </p>
+      <ul>
+        <li>Agregar, procesar, completar y eliminar tareas.</li>
+        <li>Mostrar estadísticas de tiempo estimado.</li>
+        <li>Agregar y buscar empleados.</li>
+        <li>Mostrar empleados por departamento o disponibilidad.</li>
+        <li>Asignar tareas óptimas a empleados.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Sistema de Farmacia - Instructivo de Clases Java</p>
+  </footer>
+</body>
+</html>
