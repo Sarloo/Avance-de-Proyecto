@@ -2,168 +2,211 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Instructivo - Sistema de Farmacia</title>
-  <link rel="stylesheet" href="Farmacia.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Farmacia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4fdf8;
+      color: #333;
+    }
+
+    header {
+      background-color: #2e7d32;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1rem;
+    }
+
+    /* Estilos del menú */
+    .menu-toggle {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #388e3c;
+      padding-top: 4rem;
+      transition: left 0.3s ease;
+    }
+
+    nav.active {
+      left: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 1rem 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      display: block;
+      transition: background 0.2s;
+    }
+
+    nav ul li a:hover {
+      background: #2e7d32;
+    }
+
+    main {
+      padding: 2rem;
+      margin-top: 1rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+      border: 1px solid #c8e6c9;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    section summary {
+      cursor: pointer;
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      background: #a5d6a7;
+      border-radius: 8px 8px 0 0;
+    }
+
+    section p, section pre {
+      padding: 1rem;
+      margin: 0;
+    }
+  </style>
 </head>
 <body>
-  <!-- Menú hamburguesa -->
-  <nav class="navbar">
-    <span class="menu-toggle" id="menu-toggle">☰</span>
-    <div class="sidebar" id="sidebar">
-      <h2>📘 Instructivo</h2>
-      <ul>
-        <li><a href="#tarea">TareaFarmacia.java</a></li>
-        <li><a href="#node">Node.java</a></li>
-        <li><a href="#pila">Pila.java</a></li>
-        <li><a href="#lista">ListaTareas.java</a></li>
-        <li><a href="#cola">ColaPrioridad.java</a></li>
-        <li><a href="#empleado">Empleado.java</a></li>
-        <li><a href="#enode">EmployeeNode.java</a></li>
-        <li><a href="#etree">EmployeeTree.java</a></li>
-        <li><a href="#emanager">EmployeeManager.java</a></li>
-        <li><a href="#main">Main.java</a></li>
-        <li><a href="#guia">Guía de Uso</a></li>
-      </ul>
-    </div>
-  </nav>
-
   <header>
-    <h1>📘 Instructivo del Sistema de Farmacia</h1>
-    <p>Documentación técnica de las clases y guía de uso.</p>
+    <button class="menu-toggle">☰</button>
+    <h1>Sistema de Farmacia</h1>
+    <p>Instructivo y Guía de Uso</p>
   </header>
 
+  <!-- Menú hamburguesa -->
+  <nav id="menu">
+    <ul>
+      <li><a href="#guia">Guía de Uso</a></li>
+      <li><a href="#tarea">TareaFarmacia</a></li>
+      <li><a href="#node">Node</a></li>
+      <li><a href="#pila">Pila</a></li>
+      <li><a href="#lista">ListaTareas</a></li>
+      <li><a href="#cola">ColaPrioridad</a></li>
+      <li><a href="#empleado">Empleado</a></li>
+      <li><a href="#enode">EmployeeNode</a></li>
+      <li><a href="#etree">EmployeeTree</a></li>
+      <li><a href="#emanager">EmployeeManager</a></li>
+      <li><a href="#main">Main</a></li>
+    </ul>
+  </nav>
+
   <main>
-    <!-- Cada sección con ID para que funcione el menú -->
+    <section id="guia">
+      <details>
+        <summary>Guía de Uso del Sistema</summary>
+        <p><b>1. Iniciar el sistema:</b> Ejecuta <code>Main.java</code>. Se abrirá un menú interactivo en la consola.</p>
+        <p><b>2. Menú principal:</b> Selecciona la opción deseada escribiendo el número correspondiente.</p>
+      </details>
+    </section>
+
     <section id="tarea">
       <details>
-        <summary><strong>📌 TareaFarmacia.java</strong></summary>
-        <p>
-          La clase <b>TareaFarmacia</b> representa una tarea dentro de la farmacia, almacenando información relevante como un identificador único, descripción, tipo (urgente, receta, inventario, administrativa o prioritaria), prioridad (alta, media o baja), fecha de creación, estado (pendiente, en proceso o completada) y el tiempo estimado para realizarla.
-        </p>
-        <p>
-          El constructor inicializa todos estos atributos y establece el estado inicial como PENDIENTE. Los métodos getter permiten acceder a los atributos, mientras que el setter modifica el estado de la tarea.
-        </p>
-        <p>
-          El método <code>estaCompletada</code> verifica si el estado de la tarea es COMPLETADA. El método <code>toString</code> ofrece una representación textual de la tarea, mostrando sus datos principales de forma legible.
-        </p>
+        <summary>TareaFarmacia.java</summary>
+        <p>Gestiona las tareas dentro del sistema de farmacia, incluyendo creación, procesamiento y finalización de tareas.</p>
       </details>
     </section>
 
     <section id="node">
       <details>
-        <summary><strong>📌 Node.java</strong></summary>
-        <p>
-          La clase <b>Node</b> es el elemento básico para construir estructuras de datos enlazadas, como listas, pilas y colas.
-        </p>
-        <p>
-          Cada nodo almacena un objeto de tipo <code>TareaFarmacia</code> y una referencia al siguiente nodo en la estructura. El constructor inicializa el nodo con una tarea y la referencia al siguiente nodo como nula.
-        </p>
+        <summary>Node.java</summary>
+        <p>Clase básica para nodos de estructuras de datos.</p>
       </details>
     </section>
 
     <section id="pila">
       <details>
-        <summary><strong>📌 Pila.java</strong></summary>
-        <p>
-          La clase <b>Pila</b> representa una pila de tareas urgentes para la farmacia, utilizando nodos enlazados.
-        </p>
-        <ul>
-          <li>Apilar nuevas tareas en la cima.</li>
-          <li>Procesar la tarea más urgente, marcándola como completada.</li>
-          <li>Completar una tarea específica por ID.</li>
-          <li>Consultar la cima sin eliminarla.</li>
-          <li>Verificar si está vacía y contar su tamaño.</li>
-          <li>Mostrar tareas pendientes y completadas.</li>
-        </ul>
+        <summary>Pila.java</summary>
+        <p>Implementa la estructura de datos de tipo pila para manejar tareas.</p>
       </details>
     </section>
 
     <section id="lista">
       <details>
-        <summary><strong>📌 ListaTareas.java</strong></summary>
-        <p>
-          La clase <b>ListaTareas</b> implementa una lista enlazada para gestionar tareas generales.
-        </p>
-        <ul>
-          <li>Insertar tareas al final.</li>
-          <li>Completar o eliminar tareas por ID.</li>
-          <li>Buscar tareas por ID, tipo o descripción.</li>
-          <li>Contar tareas pendientes.</li>
-          <li>Mostrar pendientes y completadas ordenadas por prioridad.</li>
-          <li>Calcular recursivamente el tiempo total de tareas pendientes.</li>
-        </ul>
+        <summary>ListaTareas.java</summary>
+        <p>Lista que administra las tareas pendientes en el sistema.</p>
       </details>
     </section>
 
     <section id="cola">
       <details>
-        <summary><strong>📌 ColaPrioridad.java</strong></summary>
-        <p>
-          La clase <b>ColaPrioridad</b> implementa una cola de prioridad mediante un heap binario.
-        </p>
-        <p>
-          Permite insertar tareas, consultar la de mayor prioridad, procesarla (marcarla como completada y eliminarla), completar tareas por ID y mostrar todas ordenadas.
-        </p>
-        <p>
-          La comparación entre tareas se hace primero por estado (pendientes primero), luego por nivel de prioridad y finalmente por fecha de creación.
-        </p>
+        <summary>ColaPrioridad.java</summary>
+        <p>Gestiona tareas según prioridad para un flujo más eficiente.</p>
       </details>
     </section>
 
     <section id="empleado">
       <details>
-        <summary><strong>📌 Empleado.java</strong></summary>
-        <p>
-          La clase <b>Empleado</b> representa a un trabajador de la farmacia, con atributos como ID, nombre, departamento, puesto, habilidades y carga de trabajo.
-        </p>
-        <p>
-          Incluye métodos para verificar disponibilidad, asignar carga, comprobar habilidades y obtener representación textual del empleado.
-        </p>
+        <summary>Empleado.java</summary>
+        <p>Representa a los empleados del sistema de farmacia con sus atributos principales.</p>
       </details>
     </section>
 
     <section id="enode">
       <details>
-        <summary><strong>📌 EmployeeNode.java</strong></summary>
-        <p>
-          La clase <b>EmployeeNode</b> representa un nodo en un árbol binario de empleados.
-        </p>
-        <p>
-          Cada nodo contiene un empleado y referencias a hijos izquierdo y derecho.
-        </p>
+        <summary>EmployeeNode.java</summary>
+        <p>Nodo para estructuras que gestionan empleados.</p>
       </details>
     </section>
 
     <section id="etree">
       <details>
-        <summary><strong>📌 EmployeeTree.java</strong></summary>
-        <p>
-          La clase <b>EmployeeTree</b> implementa un árbol binario que organiza empleados por un criterio configurable (ID, nombre o carga de trabajo).
-        </p>
-        <p>
-          Permite insertar, buscar, asignar tareas óptimas, consultar empleados por departamento y mostrar estadísticas.
-        </p>
+        <summary>EmployeeTree.java</summary>
+        <p>Árbol binario que organiza empleados según sus características.</p>
       </details>
     </section>
 
     <section id="emanager">
       <details>
-        <summary><strong>📌 EmployeeManager.java</strong></summary>
-        <p>
-          La clase <b>EmployeeManager</b> gestiona empleados con árboles binarios y mapas, facilitando búsquedas y asignaciones.
-        </p>
-        <p>
-          Permite agregar empleados, asignar tareas de forma óptima, mostrar empleados disponibles por habilidades y distribuir cargas de trabajo mediante un algoritmo de divide y vencerás.
-        </p>
+        <summary>EmployeeManager.java</summary>
+        <p>Gestiona empleados con árboles binarios y mapas, facilitando búsquedas y asignaciones.</p>
+        <p>Permite agregar empleados, asignar tareas de forma óptima, mostrar empleados disponibles por habilidades y distribuir cargas de trabajo mediante un algoritmo de divide y vencerás.</p>
       </details>
     </section>
 
     <section id="main">
       <details>
-        <summary><strong>📌 Main.java</strong></summary>
-        <p>
-          La clase <b>Main</b> centraliza el sistema de gestión de farmacia mediante un menú en consola.
-        </p>
+        <summary>Main.java</summary>
+        <p>Centraliza el sistema de gestión de farmacia mediante un menú en consola.</p>
         <ul>
           <li>Agregar, procesar, completar y eliminar tareas.</li>
           <li>Mostrar estadísticas de tiempo estimado.</li>
@@ -172,26 +215,14 @@
         </ul>
       </details>
     </section>
-
-    <section id="guia">
-      <details>
-        <summary><strong>📌 Guía de Uso del Sistema</strong></summary>
-        <ol>
-          <li><b>Iniciar el sistema:</b> Ejecuta <code>Main.java</code>.</li>
-          <li><b>Menú principal:</b> selecciona la opción escribiendo el número.</li>
-          <li><b>Gestión de empleados:</b> agregar, buscar y asignar tareas.</li>
-          <li><b>Consejos:</b> mantén actualizada la carga de trabajo y completa tareas a tiempo.</li>
-        </ol>
-      </details>
-    </section>
   </main>
 
   <script>
-    // Script para abrir/cerrar menú hamburguesa
-    const toggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    toggle.addEventListener('click', () => {
-      sidebar.classList.toggle('active');
+    const toggle = document.querySelector(".menu-toggle");
+    const menu = document.getElementById("menu");
+
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("active");
     });
   </script>
 </body>
