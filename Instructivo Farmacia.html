@@ -6,26 +6,29 @@
   <title>Instructivo Sistema de Gestión de Farmacia</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       margin: 0;
       padding: 0;
       background: #f4f9f9;
       color: #333;
+      line-height: 1.6;
     }
     header {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #008080;
+      background: linear-gradient(135deg, #008080, #006666);
       color: white;
       padding: 15px;
       position: relative;
       text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     header img {
       width: 45px;
       height: 45px;
       margin: 0 10px;
+      filter: brightness(0) invert(1);
     }
     header h1 {
       margin: 0;
@@ -49,12 +52,14 @@
       height: 100vh;
       padding-top: 20px;
       z-index: 1000;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
     }
     nav a {
       color: white;
       padding: 12px 20px;
       text-decoration: none;
       display: block;
+      transition: background 0.3s;
     }
     nav a:hover {
       background: #009999;
@@ -62,12 +67,18 @@
     .search-bar {
       text-align: center;
       margin: 15px;
+      position: relative;
     }
     .search-bar input {
-      padding: 8px;
+      padding: 10px 15px;
       width: 70%;
-      border-radius: 5px;
+      border-radius: 25px;
       border: 1px solid #ccc;
+      outline: none;
+      transition: box-shadow 0.3s;
+    }
+    .search-bar input:focus {
+      box-shadow: 0 0 5px rgba(0, 102, 102, 0.5);
     }
     .search-results {
       margin: 10px auto;
@@ -78,10 +89,13 @@
       display: none;
       position: absolute;
       z-index: 500;
+      max-height: 200px;
+      overflow-y: auto;
     }
     .search-results div {
-      padding: 8px;
+      padding: 10px;
       cursor: pointer;
+      border-bottom: 1px solid #eee;
     }
     .search-results div:hover {
       background: #f0f0f0;
@@ -90,21 +104,33 @@
       padding: 20px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 15px;
+      gap: 20px;
     }
     section {
       background: white;
-      padding: 15px;
+      padding: 0;
       border-radius: 12px;
       box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
     }
     section h2 {
-      margin-top: 0;
-      color: #006666;
+      margin: 0;
+      color: white;
+      background: #008080;
+      padding: 15px;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: background 0.3s;
+    }
+    section h2:hover {
+      background: #006666;
     }
     section h2::after {
       content: "▼";
@@ -115,19 +141,124 @@
       transform: rotate(-90deg);
     }
     .section-content {
+      padding: 15px;
       max-height: 1000px;
       overflow: hidden;
-      transition: max-height 0.3s ease-out;
+      transition: max-height 0.5s ease-out;
     }
     section.collapsed .section-content {
       max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
     }
     footer {
       background: #004d4d;
       color: white;
       text-align: center;
-      padding: 10px;
+      padding: 15px;
       margin-top: 20px;
+    }
+    
+    /* Nuevos estilos para elementos añadidos */
+    .code-example {
+      background: #f5f5f5;
+      border-left: 4px solid #008080;
+      padding: 10px;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      border-radius: 0 5px 5px 0;
+      overflow-x: auto;
+    }
+    .diagram {
+      text-align: center;
+      margin: 15px 0;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 5px;
+    }
+    .diagram img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .tip-box {
+      background: #e8f4f4;
+      border-left: 4px solid #008080;
+      padding: 10px 15px;
+      margin: 15px 0;
+      border-radius: 0 5px 5px 0;
+    }
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .feature-item {
+      background: #f0f8f8;
+      padding: 10px;
+      border-radius: 5px;
+      border-left: 3px solid #008080;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    .comparison-table th, .comparison-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    .comparison-table th {
+      background: #008080;
+      color: white;
+    }
+    .comparison-table tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .btn {
+      display: inline-block;
+      background: #008080;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin: 5px;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #006666;
+    }
+    .interactive-example {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 15px 0;
+    }
+    .interactive-example input, .interactive-example select {
+      padding: 5px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .interactive-example button {
+      background: #008080;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .interactive-example button:hover {
+      background: #006666;
+    }
+    .highlight {
+      background: #fff9c4;
+      padding: 2px 4px;
+      border-radius: 3px;
     }
   </style>
 </head>
@@ -151,6 +282,9 @@
     <a href="#employeemanager">EmployeeManager</a>
     <a href="#main">Main</a>
     <a href="#guia">Guía de Uso</a>
+    <a href="#estructuras">Estructuras de Datos</a>
+    <a href="#ejemplos">Ejemplos Prácticos</a>
+    <a href="#flujos">Flujos de Trabajo</a>
   </nav>
 
   <div class="search-bar">
@@ -165,12 +299,29 @@
         <p>
           La clase <b>TareaFarmacia</b> representa una tarea dentro de la farmacia, almacenando información relevante como un identificador único, descripción, tipo (urgente, receta, inventario, administrativa o prioritaria), prioridad (alta, media o baja), fecha de creación, estado (pendiente, en proceso o completada) y el tiempo estimado para realizarla.
         </p>
+        
+        <div class="code-example">
+// Ejemplo de creación de una tarea<br>
+TareaFarmacia tarea = new TareaFarmacia(<br>
+&nbsp;&nbsp;1, <br>
+&nbsp;&nbsp;"Reabastecer medicamentos en vitrina", <br>
+&nbsp;&nbsp;TipoTarea.INVENTARIO, <br>
+&nbsp;&nbsp;Prioridad.MEDIA, <br>
+&nbsp;&nbsp;30 // minutos estimados<br>
+);
+        </div>
+        
         <p>
           El constructor inicializa todos estos atributos y establece el estado inicial como <b>PENDIENTE</b>.  
           Los métodos getter permiten acceder a los atributos, mientras que el setter modifica el estado de la tarea.  
           El método <b>estaCompletada</b> verifica si el estado de la tarea es COMPLETADA.  
           El método <b>toString</b> ofrece una representación textual de la tarea, mostrando sus datos principales de forma legible.  
         </p>
+        
+        <div class="tip-box">
+          <strong>Consejo:</strong> Utilice tipos de tarea específicos para facilitar la búsqueda y filtrado posterior.
+        </div>
+        
         <p>
           Esta clase facilita la creación, consulta y gestión del estado de las tareas en el sistema de farmacia.
         </p>
@@ -183,11 +334,26 @@
         <p>
           La clase <b>Node</b> es el elemento básico para construir estructuras de datos enlazadas, como listas, pilas y colas, dentro del sistema de farmacia.
         </p>
+        
+        <div class="diagram">
+          <p><strong>Estructura de un Nodo:</strong></p>
+          <div style="text-align: center; padding: 10px; background: #e8f4f4; border-radius: 5px;">
+            [Nodo Anterior] ← [Nodo Actual: TareaFarmacia] → [Nodo Siguiente]
+          </div>
+        </div>
+        
         <p>
           Cada nodo almacena un objeto de tipo <b>TareaFarmacia</b> y una referencia al siguiente nodo en la estructura.  
           El constructor inicializa el nodo con una tarea y la referencia al siguiente nodo como nula.  
           Los métodos getter y setter permiten acceder y modificar tanto la tarea como el siguiente nodo.
         </p>
+        
+        <div class="code-example">
+// Ejemplo de creación de nodos enlazados<br>
+Node primerNodo = new Node(tarea1);<br>
+Node segundoNodo = new Node(tarea2);<br>
+primerNodo.setNext(segundoNodo); // Enlazar nodos
+        </div>
       </div>
     </section>
 
@@ -197,6 +363,16 @@
         <p>
           La clase <b>Pila</b> representa una pila de tareas urgentes para la farmacia, utilizando nodos enlazados.
         </p>
+        
+        <div class="diagram">
+          <p><strong>Funcionamiento de una Pila (LIFO):</strong></p>
+          <div style="text-align: center;">
+            <div style="background: #e0e0e0; padding: 5px; margin: 2px; border-radius: 3px;">Tarea 3 (Cima - Última en entrar)</div>
+            <div style="background: #d0d0d0; padding: 5px; margin: 2px; border-radius: 3px;">Tarea 2</div>
+            <div style="background: #c0c0c0; padding: 5px; margin: 2px; border-radius: 3px;">Tarea 1 (Fondo - Primera en entrar)</div>
+          </div>
+        </div>
+        
         <p>Permite:</p>
         <ul>
           <li>Apilar nuevas tareas en la cima.</li>
@@ -206,6 +382,15 @@
           <li>Verificar si está vacía y contar su tamaño.</li>
           <li>Mostrar tareas pendientes (ordenadas por prioridad) y completadas.</li>
         </ul>
+        
+        <div class="interactive-example">
+          <p><strong>Simulador de Pila:</strong></p>
+          <input type="text" id="tareaPila" placeholder="Descripción de tarea">
+          <button onclick="agregarPila()">Agregar a Pila</button>
+          <button onclick="procesarPila()">Procesar Tarea (Cima)</button>
+          <div id="contenidoPila" style="margin-top: 10px; min-height: 50px; border: 1px dashed #ccc; padding: 5px;"></div>
+        </div>
+        
         <p>Esta estructura facilita la gestión rápida y priorizada de las tareas urgentes.</p>
       </div>
     </section>
@@ -216,6 +401,26 @@
         <p>
           La clase <b>ListaTareas</b> implementa una lista enlazada para gestionar tareas generales.
         </p>
+        
+        <div class="feature-list">
+          <div class="feature-item">
+            <strong>Inserción</strong><br>
+            Agregar tareas al final de la lista
+          </div>
+          <div class="feature-item">
+            <strong>Búsqueda</strong><br>
+            Encontrar tareas por ID, tipo o descripción
+          </div>
+          <div class="feature-item">
+            <strong>Eliminación</strong><br>
+            Remover tareas específicas por ID
+          </div>
+          <div class="feature-item">
+            <strong>Estadísticas</strong><br>
+            Contar tareas pendientes y calcular tiempo total
+          </div>
+        </div>
+        
         <p>Incluye funcionalidades como:</p>
         <ul>
           <li>Insertar tareas al final.</li>
@@ -226,6 +431,11 @@
           <li>Calcular recursivamente el tiempo total de tareas pendientes.</li>
           <li>Obtener tareas ordenadas por prioridad y fecha.</li>
         </ul>
+        
+        <div class="tip-box">
+          <strong>Consejo:</strong> Utilice la búsqueda por descripción cuando no recuerde el ID exacto de una tarea.
+        </div>
+        
         <p>
           Esto permite una administración detallada y flexible de las tareas de la farmacia.
         </p>
@@ -238,12 +448,47 @@
         <p>
           La clase <b>ColaPrioridad</b> implementa una cola de prioridad mediante un heap binario.
         </p>
+        
+        <div class="diagram">
+          <p><strong>Comparación de Estructuras:</strong></p>
+          <table class="comparison-table">
+            <tr>
+              <th>Estructura</th>
+              <th>Orden de Procesamiento</th>
+              <th>Uso Ideal</th>
+            </tr>
+            <tr>
+              <td>Pila (LIFO)</td>
+              <td>Último en entrar, primero en salir</td>
+              <td>Tareas urgentes que requieren atención inmediata</td>
+            </tr>
+            <tr>
+              <td>Cola (FIFO)</td>
+              <td>Primero en entrar, primero en salir</td>
+              <td>Tareas en orden de llegada</td>
+            </tr>
+            <tr>
+              <td>Cola de Prioridad</td>
+              <td>Por prioridad (no por orden de llegada)</td>
+              <td>Tareas con diferentes niveles de importancia</td>
+            </tr>
+          </table>
+        </div>
+        
         <p>
           Permite insertar tareas, consultar la de mayor prioridad, procesarla (marcarla como completada y eliminarla), completar tareas por ID y mostrar todas ordenadas.
         </p>
         <p>
           La comparación entre tareas se hace primero por estado (pendientes primero), luego por nivel de prioridad y finalmente por fecha de creación (más antiguas primero).
         </p>
+        
+        <div class="code-example">
+// Ejemplo de uso de Cola de Prioridad<br>
+ColaPrioridad cola = new ColaPrioridad();<br>
+cola.insertar(tareaAltaPrioridad);<br>
+cola.insertar(tareaMediaPrioridad);<br>
+TareaFarmacia proximaTarea = cola.consultar(); // Devuelve tareaAltaPrioridad
+        </div>
       </div>
     </section>
 
@@ -253,10 +498,23 @@
         <p>
           La clase <b>Empleado</b> representa a un trabajador de la farmacia, con atributos como ID, nombre, departamento, puesto, habilidades y carga de trabajo.
         </p>
+        
+        <div class="interactive-example">
+          <p><strong>Calculadora de Disponibilidad:</strong></p>
+          <label>Carga actual: </label><input type="number" id="cargaActual" value="5" min="0" max="10">/10<br>
+          <label>Tareas asignadas: </label><input type="number" id="tareasAsignadas" value="3" min="0"><br>
+          <button onclick="calcularDisponibilidad()">Calcular Disponibilidad</button>
+          <p id="resultadoDisponibilidad" style="margin-top: 10px;"></p>
+        </div>
+        
         <p>
           Incluye métodos para verificar disponibilidad, asignar carga, comprobar habilidades y obtener representación textual del empleado.  
           Facilita la organización y consulta de las capacidades y disponibilidad de los empleados.
         </p>
+        
+        <div class="tip-box">
+          <strong>Consejo:</strong> Asigne tareas considerando tanto las habilidades del empleado como su carga de trabajo actual para optimizar la productividad.
+        </div>
       </div>
     </section>
 
@@ -266,6 +524,18 @@
         <p>
           La clase <b>EmployeeNode</b> representa un nodo en un árbol binario de empleados.
         </p>
+        
+        <div class="diagram">
+          <p><strong>Estructura de un Árbol Binario:</strong></p>
+          <div style="text-align: center; line-height: 2;">
+            <div>        [Nodo Raíz]</div>
+            <div>        /        \</div>
+            <div>[Hijo Izquierdo]  [Hijo Derecho]</div>
+            <div>    /    \            /    \</div>
+            <div>[Nieto] [Nieto]   [Nieto] [Nieto]</div>
+          </div>
+        </div>
+        
         <p>
           Cada nodo contiene un empleado y referencias a hijos izquierdo y derecho.  
           Esta clase sirve como base para construir árboles binarios de empleados, facilitando la organización jerárquica y la búsqueda eficiente dentro de la estructura.
@@ -279,9 +549,36 @@
         <p>
           La clase <b>EmployeeTree</b> implementa un árbol binario que organiza empleados por un criterio configurable (ID, nombre o carga de trabajo).
         </p>
+        
+        <div class="feature-list">
+          <div class="feature-item">
+            <strong>Inserción Balanceada</strong><br>
+            Mantiene el árbol equilibrado para búsquedas eficientes
+          </div>
+          <div class="feature-item">
+            <strong>Búsqueda Rápida</strong><br>
+            Encuentra empleados en tiempo logarítmico
+          </div>
+          <div class="feature-item">
+            <strong>Asignación Óptima</strong><br>
+            Sugiere el empleado más adecuado para cada tarea
+          </div>
+          <div class="feature-item">
+            <strong>Estadísticas</strong><br>
+            Proporciona datos sobre la distribución de empleados
+          </div>
+        </div>
+        
         <p>
           Permite insertar, buscar, asignar tareas óptimas, consultar empleados por departamento y mostrar estadísticas.
         </p>
+        
+        <div class="code-example">
+// Ejemplo de búsqueda en el árbol<br>
+EmployeeTree arbol = new EmployeeTree(Criterio.CARGA_TRABAJO);<br>
+// ... agregar empleados al árbol<br>
+Empleado empleadoOptimo = arbol.asignarTareaOptima(tarea);
+        </div>
       </div>
     </section>
 
@@ -291,9 +588,27 @@
         <p>
           La clase <b>EmployeeManager</b> gestiona empleados con árboles binarios y mapas, facilitando búsquedas y asignaciones.
         </p>
+        
         <p>
           Permite agregar empleados, asignar tareas de forma óptima, mostrar empleados disponibles por habilidades y distribuir cargas de trabajo mediante un algoritmo de divide y vencerás.
         </p>
+        
+        <div class="tip-box">
+          <strong>Algoritmo Divide y Vencerás:</strong> Este enfoque divide el problema en subproblemas más pequeños, los resuelve recursivamente y combina las soluciones. En la gestión de empleados, permite distribuir equitativamente la carga de trabajo.
+        </div>
+        
+        <div class="interactive-example">
+          <p><strong>Simulador de Asignación de Tareas:</strong></p>
+          <label>Tipo de Tarea: </label>
+          <select id="tipoTarea">
+            <option value="URGENTE">Urgente</option>
+            <option value="RECETA">Receta</option>
+            <option value="INVENTARIO">Inventario</option>
+            <option value="ADMINISTRATIVA">Administrativa</option>
+          </select>
+          <button onclick="simularAsignacion()">Simular Asignación</button>
+          <p id="resultadoAsignacion" style="margin-top: 10px;"></p>
+        </div>
       </div>
     </section>
 
@@ -303,6 +618,14 @@
         <p>
           La clase <b>Main</b> centraliza el sistema de gestión de farmacia mediante un menú en consola.
         </p>
+        
+        <div class="diagram">
+          <p><strong>Flujo del Programa Principal:</strong></p>
+          <div style="text-align: center; padding: 10px; background: #e8f4f4; border-radius: 5px;">
+            Inicio → Menú Principal → Opción Seleccionada → Ejecución → Volver al Menú
+          </div>
+        </div>
+        
         <p>El menú permite:</p>
         <ul>
           <li>Agregar, procesar, completar y eliminar tareas.</li>
@@ -310,6 +633,18 @@
           <li>Agregar empleados, buscarlos, mostrarlos por departamento o disponibilidad.</li>
           <li>Asignar tareas óptimas a empleados.</li>
         </ul>
+        
+        <div class="code-example">
+// Estructura básica del método main<br>
+public static void main(String[] args) {<br>
+&nbsp;&nbsp;boolean salir = false;<br>
+&nbsp;&nbsp;while (!salir) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;mostrarMenu();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int opcion = leerOpcion();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;salir = procesarOpcion(opcion);<br>
+&nbsp;&nbsp;}<br>
+}
+        </div>
       </div>
     </section>
 
@@ -320,6 +655,26 @@
           <li><b>Iniciar el sistema:</b> Ejecuta el archivo <b>Main.java</b>. Se abrirá un menú interactivo en la consola.</li>
           <li><b>Menú principal:</b> Selecciona la opción deseada escribiendo el número correspondiente.</li>
         </ol>
+        
+        <div class="feature-list">
+          <div class="feature-item">
+            <strong>Gestión de Tareas</strong><br>
+            <a href="#tarea" class="btn">Ver Detalles</a>
+          </div>
+          <div class="feature-item">
+            <strong>Gestión de Empleados</strong><br>
+            <a href="#empleado" class="btn">Ver Detalles</a>
+          </div>
+          <div class="feature-item">
+            <strong>Estadísticas</strong><br>
+            <a href="#main" class="btn">Ver Detalles</a>
+          </div>
+          <div class="feature-item">
+            <strong>Estructuras de Datos</strong><br>
+            <a href="#estructuras" class="btn">Ver Detalles</a>
+          </div>
+        </div>
+        
         <p>Opciones comunes:</p>
         <ul>
           <li>Agregar tarea: introduce los datos solicitados (ID, tipo, descripción, prioridad, tiempo estimado).</li>
@@ -327,6 +682,7 @@
           <li>Completar/Eliminar tarea: ingresa el ID de la tarea a gestionar.</li>
           <li>Mostrar estadísticas: revisa cuántas tareas pendientes existen y el tiempo estimado total.</li>
         </ul>
+        
         <h3>Gestión de empleados</h3>
         <ul>
           <li>Agregar empleado: introduce ID, nombre, departamento, puesto y habilidades.</li>
@@ -334,18 +690,131 @@
           <li>Buscar por ID o habilidad: facilita localizar empleados específicos.</li>
           <li>Asignar tareas: el sistema sugiere automáticamente el empleado más adecuado según carga de trabajo y habilidades.</li>
         </ul>
+        
         <h3>Consejos prácticos</h3>
         <ul>
           <li>Mantén actualizada la carga de trabajo de los empleados para una asignación óptima.</li>
           <li>Completa las tareas a tiempo para mantener la lista organizada.</li>
           <li>Usa las búsquedas por tipo y descripción para encontrar tareas rápidamente.</li>
+          <li>Revisa regularmente las estadísticas para identificar cuellos de botella.</li>
         </ul>
+      </div>
+    </section>
+
+    <section id="estructuras">
+      <h2>Estructuras de Datos Utilizadas</h2>
+      <div class="section-content">
+        <p>El sistema utiliza diversas estructuras de datos para optimizar el manejo de tareas y empleados:</p>
+        
+        <table class="comparison-table">
+          <tr>
+            <th>Estructura</th>
+            <th>Uso en el Sistema</th>
+            <th>Ventajas</th>
+          </tr>
+          <tr>
+            <td>Lista Enlazada</td>
+            <td>Gestión de tareas generales</td>
+            <td>Flexibilidad para insertar y eliminar elementos</td>
+          </tr>
+          <tr>
+            <td>Pila</td>
+            <td>Tareas urgentes (LIFO)</td>
+            <td>Acceso rápido al elemento más reciente</td>
+          </tr>
+          <tr>
+            <td>Cola de Prioridad</td>
+            <td>Tareas ordenadas por importancia</td>
+            <td>Procesamiento por prioridad, no por orden de llegada</td>
+          </tr>
+          <tr>
+            <td>Árbol Binario</td>
+            <td>Organización jerárquica de empleados</td>
+            <td>Búsquedas eficientes (O(log n))</td>
+          </tr>
+          <tr>
+            <td>Mapa/HashMap</td>
+            <td>Búsqueda rápida de empleados por ID</td>
+            <td>Acceso constante (O(1)) a los elementos</td>
+          </tr>
+        </table>
+        
+        <div class="tip-box">
+          <strong>Nota:</strong> La elección de cada estructura de datos está optimizada para el tipo de operación que se realiza con más frecuencia en cada caso.
+        </div>
+      </div>
+    </section>
+
+    <section id="ejemplos">
+      <h2>Ejemplos Prácticos</h2>
+      <div class="section-content">
+        <p>A continuación se presentan ejemplos prácticos de uso del sistema:</p>
+        
+        <h3>Escenario 1: Gestión de una receta urgente</h3>
+        <ol>
+          <li>El sistema recibe una receta marcada como <span class="highlight">URGENTE</span></li>
+          <li>La tarea se añade a la <span class="highlight">Pila de tareas urgentes</span></li>
+          <li>El empleado con menor carga de trabajo y habilidades en <span class="highlight">atención al cliente</span> es asignado</li>
+          <li>La tarea se marca como <span class="highlight">COMPLETADA</span> una vez procesada</li>
+        </ol>
+        
+        <h3>Escenario 2: Inventario mensual</h3>
+        <ol>
+          <li>Se crea una tarea de tipo <span class="highlight">INVENTARIO</span> con prioridad <span class="highlight">MEDIA</span></li>
+          <li>La tarea se añade a la <span class="highlight">Lista de tareas generales</span></li>
+          <li>El sistema sugiere empleados del departamento de <span class="highlight">almacén</span></li>
+          <li>La tarea se programa para el momento de menor afluencia de clientes</li>
+        </ol>
+        
+        <div class="interactive-example">
+          <p><strong>Generador de Ejemplos de Tareas:</strong></p>
+          <button onclick="generarEjemploTarea()">Generar Ejemplo Aleatorio</button>
+          <p id="ejemploTarea" style="margin-top: 10px; padding: 10px; background: #f0f8f8; border-radius: 5px;"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="flujos">
+      <h2>Flujos de Trabajo</h2>
+      <div class="section-content">
+        <p>El sistema sigue flujos de trabajo específicos para diferentes tipos de tareas:</p>
+        
+        <h3>Flujo para Tareas Urgentes</h3>
+        <div class="diagram">
+          <div style="text-align: center; padding: 10px; background: #e8f4f4; border-radius: 5px; line-height: 2;">
+            <div>Creación de Tarea Urgente → Pila de Urgentes → Asignación Inmediata</div>
+            <div>↓</div>
+            <div>Procesamiento → Verificación → Completado</div>
+          </div>
+        </div>
+        
+        <h3>Flujo para Tareas Programadas</h3>
+        <div class="diagram">
+          <div style="text-align: center; padding: 10px; background: #e8f4f4; border-radius: 5px; line-height: 2;">
+            <div>Creación de Tarea → Lista General → Asignación por Prioridad</div>
+            <div>↓</div>
+            <div>Programación → Ejecución → Completado</div>
+          </div>
+        </div>
+        
+        <h3>Flujo de Gestión de Empleados</h3>
+        <div class="diagram">
+          <div style="text-align: center; padding: 10px; background: #e8f4f4; border-radius: 5px; line-height: 2;">
+            <div>Registro de Empleado → Árbol Binario → Asignación de Tareas</div>
+            <div>↓</div>
+            <div>Seguimiento de Carga → Reasignación si es necesario</div>
+          </div>
+        </div>
+        
+        <div class="tip-box">
+          <strong>Optimización:</strong> Los flujos están diseñados para minimizar el tiempo de respuesta en tareas críticas y maximizar la eficiencia en tareas programadas.
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    Elaborado por el equipo "Yo Este"
+    Elaborado por el equipo "Yo Este" | Versión 2.0 | <a href="#guia" style="color: #80d0d0;">Volver al Inicio</a>
   </footer>
 
   <script>
@@ -397,6 +866,110 @@
         resultsBox.style.display = 'none';
       }
     });
+
+    // Funciones para los ejemplos interactivos
+    let pilaTareas = [];
+    
+    function agregarPila() {
+      const tareaInput = document.getElementById('tareaPila');
+      const tarea = tareaInput.value.trim();
+      if (tarea) {
+        pilaTareas.push(tarea);
+        actualizarPila();
+        tareaInput.value = '';
+      }
+    }
+    
+    function procesarPila() {
+      if (pilaTareas.length > 0) {
+        const tareaProcesada = pilaTareas.pop();
+        alert(`Tarea procesada: "${tareaProcesada}"`);
+        actualizarPila();
+      } else {
+        alert('La pila está vacía');
+      }
+    }
+    
+    function actualizarPila() {
+      const contenidoPila = document.getElementById('contenidoPila');
+      contenidoPila.innerHTML = '<strong>Contenido de la Pila (de arriba a abajo):</strong><br>';
+      if (pilaTareas.length === 0) {
+        contenidoPila.innerHTML += '<em>La pila está vacía</em>';
+      } else {
+        for (let i = pilaTareas.length - 1; i >= 0; i--) {
+          contenidoPila.innerHTML += `• ${pilaTareas[i]}<br>`;
+        }
+      }
+    }
+    
+    function calcularDisponibilidad() {
+      const cargaActual = parseInt(document.getElementById('cargaActual').value);
+      const tareasAsignadas = parseInt(document.getElementById('tareasAsignadas').value);
+      
+      const disponibilidad = 10 - cargaActual - tareasAsignadas;
+      let mensaje = '';
+      
+      if (disponibilidad >= 7) {
+        mensaje = `Alta disponibilidad (${disponibilidad}/10). Puede asignarse más tareas.`;
+      } else if (disponibilidad >= 4) {
+        mensaje = `Disponibilidad media (${disponibilidad}/10). Asignar tareas con moderación.`;
+      } else {
+        mensaje = `Baja disponibilidad (${disponibilidad}/10). Considerar redistribuir carga.`;
+      }
+      
+      document.getElementById('resultadoDisponibilidad').textContent = mensaje;
+    }
+    
+    function simularAsignacion() {
+      const tipoTarea = document.getElementById('tipoTarea').value;
+      let empleadoSugerido = '';
+      
+      switch(tipoTarea) {
+        case 'URGENTE':
+          empleadoSugerido = 'Empleado con menor carga de trabajo y experiencia en urgencias';
+          break;
+        case 'RECETA':
+          empleadoSugerido = 'Farmacéutico con disponibilidad inmediata';
+          break;
+        case 'INVENTARIO':
+          empleadoSugerido = 'Personal de almacén con habilidades de organización';
+          break;
+        case 'ADMINISTRATIVA':
+          empleadoSugerido = 'Administrativo con conocimiento de procedimientos';
+          break;
+      }
+      
+      document.getElementById('resultadoAsignacion').textContent = 
+        `Para una tarea de tipo ${tipoTarea}, se sugiere: ${empleadoSugerido}`;
+    }
+    
+    function generarEjemploTarea() {
+      const tipos = ['URGENTE', 'RECETA', 'INVENTARIO', 'ADMINISTRATIVA'];
+      const descripciones = [
+        'Revisar stock de medicamentos críticos',
+        'Preparar pedido de antibióticos',
+        'Actualizar base de datos de productos',
+        'Revisar caducidades del mes'
+      ];
+      const prioridades = ['ALTA', 'MEDIA', 'BAJA'];
+      
+      const tipo = tipos[Math.floor(Math.random() * tipos.length)];
+      const descripcion = descripciones[Math.floor(Math.random() * descripciones.length)];
+      const prioridad = prioridades[Math.floor(Math.random() * prioridades.length)];
+      const tiempo = Math.floor(Math.random() * 120) + 10;
+      
+      document.getElementById('ejemploTarea').innerHTML = 
+        `<strong>Tipo:</strong> ${tipo}<br>
+         <strong>Descripción:</strong> ${descripcion}<br>
+         <strong>Prioridad:</strong> ${prioridad}<br>
+         <strong>Tiempo estimado:</strong> ${tiempo} minutos`;
+    }
+
+    // Inicializar algunos elementos al cargar la página
+    window.onload = function() {
+      actualizarPila();
+      calcularDisponibilidad();
+    };
   </script>
 </body>
 </html>
