@@ -1,323 +1,350 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sistema de Gestión de Farmacia - Instructivo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructivo Sistema de Gestión de Farmacia</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 0;
       background: #f4f9f9;
       color: #333;
     }
-
     header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: #008080;
       color: white;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    header h1 {
-      font-size: 1.2rem;
-      margin: 0;
-    }
-
-    .menu-btn {
-      font-size: 24px;
-      cursor: pointer;
-      display: block;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #006666;
-      padding-top: 60px;
-      transition: left 0.3s ease;
-      z-index: 1000;
-    }
-
-    nav.active {
-      left: 0;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    nav ul li {
       padding: 15px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-
-    .search-bar {
-      margin: 15px auto;
+      position: relative;
       text-align: center;
     }
-
+    header img {
+      width: 45px;
+      height: 45px;
+      margin: 0 10px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+    .menu-toggle {
+      position: absolute;
+      left: 15px;
+      top: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    nav {
+      display: none;
+      flex-direction: column;
+      background: #006666;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 220px;
+      height: 100vh;
+      padding-top: 20px;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      display: block;
+    }
+    nav a:hover {
+      background: #009999;
+    }
+    .search-bar {
+      text-align: center;
+      margin: 15px;
+    }
     .search-bar input {
-      width: 80%;
-      padding: 10px;
-      border-radius: 20px;
+      padding: 8px;
+      width: 70%;
+      border-radius: 5px;
       border: 1px solid #ccc;
-      font-size: 1rem;
     }
-
-    .container {
-      padding: 20px;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    h2 {
-      color: #006666;
-      margin-bottom: 15px;
-    }
-
-    .card {
+    .search-results {
+      margin: 10px auto;
+      width: 70%;
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: none;
+      position: absolute;
+      z-index: 500;
+    }
+    .search-results div {
+      padding: 8px;
+      cursor: pointer;
+    }
+    .search-results div:hover {
+      background: #f0f0f0;
+    }
+    main {
       padding: 20px;
-      margin-bottom: 20px;
-      transition: transform 0.2s;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
     }
-
-    .card:hover {
-      transform: scale(1.02);
+    section {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
     }
-
-    .card img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 10px;
+    section h2 {
+      margin-top: 0;
+      color: #006666;
     }
-
     footer {
       background: #004d4d;
       color: white;
       text-align: center;
       padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      font-size: 0.9rem;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>📘 Instructivo - Sistema de Gestión de Farmacia</h1>
-    <span class="menu-btn" onclick="toggleMenu()">☰</span>
+    <span class="menu-toggle">☰</span>
+    <img src="https://cdn-icons-png.flaticon.com/512/2966/2966488.png" alt="Farmacia">
+    <h1>Instructivo de Sistema de Gestión de Farmacia</h1>
+    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Hospital">
   </header>
 
-  <!-- Menú hamburguesa -->
   <nav id="menu">
-    <ul>
-      <li><a href="#tarea" onclick="toggleMenu()">TareaFarmacia</a></li>
-      <li><a href="#node" onclick="toggleMenu()">Node</a></li>
-      <li><a href="#pila" onclick="toggleMenu()">Pila</a></li>
-      <li><a href="#lista" onclick="toggleMenu()">ListaTareas</a></li>
-      <li><a href="#cola" onclick="toggleMenu()">ColaPrioridad</a></li>
-      <li><a href="#empleado" onclick="toggleMenu()">Empleado</a></li>
-      <li><a href="#enode" onclick="toggleMenu()">EmployeeNode</a></li>
-      <li><a href="#etree" onclick="toggleMenu()">EmployeeTree</a></li>
-      <li><a href="#emanager" onclick="toggleMenu()">EmployeeManager</a></li>
-      <li><a href="#main" onclick="toggleMenu()">Main</a></li>
-      <li><a href="#guia" onclick="toggleMenu()">Guía de Uso</a></li>
-    </ul>
+    <a href="#tarea">TareaFarmacia</a>
+    <a href="#node">Node</a>
+    <a href="#pila">Pila</a>
+    <a href="#lista">ListaTareas</a>
+    <a href="#cola">ColaPrioridad</a>
+    <a href="#empleado">Empleado</a>
+    <a href="#employeenode">EmployeeNode</a>
+    <a href="#employeetree">EmployeeTree</a>
+    <a href="#employeemanager">EmployeeManager</a>
+    <a href="#main">Main</a>
+    <a href="#guia">Guía de Uso</a>
   </nav>
 
-  <!-- Barra de búsqueda -->
   <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="🔍 Buscar en el instructivo..." onkeyup="buscar()">
+    <input type="text" id="searchInput" placeholder="Buscar en el instructivo...">
+    <div id="results" class="search-results"></div>
   </div>
 
-  <!-- Contenido -->
-  <div class="container">
-
+  <main>
     <section id="tarea">
       <h2>TareaFarmacia.java</h2>
-      <div class="card">
-        <p>La clase <b>TareaFarmacia</b> representa una tarea dentro de la farmacia, almacenando información relevante como un identificador único, descripción, tipo (urgente, receta, inventario, administrativa o prioritaria), prioridad (alta, media o baja), fecha de creación, estado (pendiente, en proceso o completada) y el tiempo estimado para realizarla.</p>
-        <p>El constructor inicializa todos estos atributos y establece el estado inicial como <b>PENDIENTE</b>. Los métodos getter permiten acceder a los atributos, mientras que el setter modifica el estado de la tarea. El método <b>estaCompletada</b> verifica si el estado de la tarea es COMPLETADA. El método <b>toString</b> ofrece una representación textual de la tarea, mostrando sus datos principales de forma legible.</p>
-      </div>
+      <p>
+        La clase <b>TareaFarmacia</b> representa una tarea dentro de la farmacia, almacenando información relevante como un identificador único, descripción, tipo (urgente, receta, inventario, administrativa o prioritaria), prioridad (alta, media o baja), fecha de creación, estado (pendiente, en proceso o completada) y el tiempo estimado para realizarla.
+      </p>
+      <p>
+        El constructor inicializa todos estos atributos y establece el estado inicial como <b>PENDIENTE</b>.  
+        Los métodos getter permiten acceder a los atributos, mientras que el setter modifica el estado de la tarea.  
+        El método <b>estaCompletada</b> verifica si el estado de la tarea es COMPLETADA.  
+        El método <b>toString</b> ofrece una representación textual de la tarea, mostrando sus datos principales de forma legible.  
+      </p>
+      <p>
+        Esta clase facilita la creación, consulta y gestión del estado de las tareas en el sistema de farmacia.
+      </p>
     </section>
 
     <section id="node">
       <h2>Node.java</h2>
-      <div class="card">
-        <p>La clase <b>Node</b> es el elemento básico para construir estructuras de datos enlazadas, como listas, pilas y colas, dentro del sistema de farmacia. Cada nodo almacena un objeto de tipo <b>TareaFarmacia</b> y una referencia al siguiente nodo en la estructura.</p>
-        <p>El constructor inicializa el nodo con una tarea y la referencia al siguiente nodo como nula. Los métodos getter y setter permiten acceder y modificar tanto la tarea como el siguiente nodo.</p>
-      </div>
+      <p>
+        La clase <b>Node</b> es el elemento básico para construir estructuras de datos enlazadas, como listas, pilas y colas, dentro del sistema de farmacia.
+      </p>
+      <p>
+        Cada nodo almacena un objeto de tipo <b>TareaFarmacia</b> y una referencia al siguiente nodo en la estructura.  
+        El constructor inicializa el nodo con una tarea y la referencia al siguiente nodo como nula.  
+        Los métodos getter y setter permiten acceder y modificar tanto la tarea como el siguiente nodo.
+      </p>
     </section>
 
     <section id="pila">
       <h2>Pila.java</h2>
-      <div class="card">
-        <p>La clase <b>Pila</b> representa una pila de tareas urgentes para la farmacia, utilizando nodos enlazados. Permite:</p>
-        <ul>
-          <li>Apilar nuevas tareas en la cima.</li>
-          <li>Procesar la tarea más urgente, marcándola como completada.</li>
-          <li>Completar una tarea específica por ID.</li>
-          <li>Consultar la cima sin eliminarla.</li>
-          <li>Verificar si está vacía y contar su tamaño.</li>
-          <li>Mostrar tareas pendientes (ordenadas por prioridad) y completadas.</li>
-        </ul>
-      </div>
+      <p>
+        La clase <b>Pila</b> representa una pila de tareas urgentes para la farmacia, utilizando nodos enlazados.
+      </p>
+      <p>Permite:</p>
+      <ul>
+        <li>Apilar nuevas tareas en la cima.</li>
+        <li>Procesar la tarea más urgente, marcándola como completada.</li>
+        <li>Completar una tarea específica por ID.</li>
+        <li>Consultar la cima sin eliminarla.</li>
+        <li>Verificar si está vacía y contar su tamaño.</li>
+        <li>Mostrar tareas pendientes (ordenadas por prioridad) y completadas.</li>
+      </ul>
+      <p>Esta estructura facilita la gestión rápida y priorizada de las tareas urgentes.</p>
     </section>
 
     <section id="lista">
       <h2>ListaTareas.java</h2>
-      <div class="card">
-        <p>La clase <b>ListaTareas</b> implementa una lista enlazada para gestionar tareas generales. Incluye funcionalidades como:</p>
-        <ul>
-          <li>Insertar tareas al final.</li>
-          <li>Completar o eliminar tareas por ID.</li>
-          <li>Buscar tareas por ID, tipo o descripción.</li>
-          <li>Contar tareas pendientes.</li>
-          <li>Mostrar pendientes y completadas ordenadas por prioridad.</li>
-          <li>Calcular recursivamente el tiempo total de tareas pendientes.</li>
-          <li>Obtener tareas ordenadas por prioridad y fecha.</li>
-        </ul>
-      </div>
+      <p>
+        La clase <b>ListaTareas</b> implementa una lista enlazada para gestionar tareas generales.
+      </p>
+      <p>Incluye funcionalidades como:</p>
+      <ul>
+        <li>Insertar tareas al final.</li>
+        <li>Completar o eliminar tareas por ID.</li>
+        <li>Buscar tareas por ID, tipo o descripción.</li>
+        <li>Contar tareas pendientes.</li>
+        <li>Mostrar pendientes y completadas ordenadas por prioridad.</li>
+        <li>Calcular recursivamente el tiempo total de tareas pendientes.</li>
+        <li>Obtener tareas ordenadas por prioridad y fecha.</li>
+      </ul>
+      <p>
+        Esto permite una administración detallada y flexible de las tareas de la farmacia.
+      </p>
     </section>
 
     <section id="cola">
       <h2>ColaPrioridad.java</h2>
-      <div class="card">
-        <p>La clase <b>ColaPrioridad</b> implementa una cola de prioridad mediante un heap binario. Permite:</p>
-        <ul>
-          <li>Insertar tareas.</li>
-          <li>Consultar la de mayor prioridad.</li>
-          <li>Procesarla (marcarla como completada y eliminarla).</li>
-          <li>Completar tareas por ID.</li>
-          <li>Mostrar todas ordenadas.</li>
-        </ul>
-        <p>La comparación entre tareas se hace primero por estado (pendientes primero), luego por nivel de prioridad y finalmente por fecha de creación (más antiguas primero).</p>
-      </div>
+      <p>
+        La clase <b>ColaPrioridad</b> implementa una cola de prioridad mediante un heap binario.
+      </p>
+      <p>
+        Permite insertar tareas, consultar la de mayor prioridad, procesarla (marcarla como completada y eliminarla), completar tareas por ID y mostrar todas ordenadas.
+      </p>
+      <p>
+        La comparación entre tareas se hace primero por estado (pendientes primero), luego por nivel de prioridad y finalmente por fecha de creación (más antiguas primero).
+      </p>
     </section>
 
     <section id="empleado">
       <h2>Empleado.java</h2>
-      <div class="card">
-        <p>La clase <b>Empleado</b> representa a un trabajador de la farmacia, con atributos como ID, nombre, departamento, puesto, habilidades y carga de trabajo.</p>
-        <p>Incluye métodos para verificar disponibilidad, asignar carga, comprobar habilidades y obtener representación textual del empleado. Facilita la organización y consulta de las capacidades y disponibilidad de los empleados.</p>
-      </div>
+      <p>
+        La clase <b>Empleado</b> representa a un trabajador de la farmacia, con atributos como ID, nombre, departamento, puesto, habilidades y carga de trabajo.
+      </p>
+      <p>
+        Incluye métodos para verificar disponibilidad, asignar carga, comprobar habilidades y obtener representación textual del empleado.  
+        Facilita la organización y consulta de las capacidades y disponibilidad de los empleados.
+      </p>
     </section>
 
-    <section id="enode">
+    <section id="employeenode">
       <h2>EmployeeNode.java</h2>
-      <div class="card">
-        <p>La clase <b>EmployeeNode</b> representa un nodo en un árbol binario de empleados. Cada nodo contiene un empleado y referencias a hijos izquierdo y derecho.</p>
-        <p>Esta clase sirve como base para construir árboles binarios de empleados, facilitando la organización jerárquica y la búsqueda eficiente dentro de la estructura.</p>
-      </div>
+      <p>
+        La clase <b>EmployeeNode</b> representa un nodo en un árbol binario de empleados.
+      </p>
+      <p>
+        Cada nodo contiene un empleado y referencias a hijos izquierdo y derecho.  
+        Esta clase sirve como base para construir árboles binarios de empleados, facilitando la organización jerárquica y la búsqueda eficiente dentro de la estructura.
+      </p>
     </section>
 
-    <section id="etree">
+    <section id="employeetree">
       <h2>EmployeeTree.java</h2>
-      <div class="card">
-        <p>La clase <b>EmployeeTree</b> implementa un árbol binario que organiza empleados por un criterio configurable (ID, nombre o carga de trabajo).</p>
-        <p>Permite insertar, buscar, asignar tareas óptimas, consultar empleados por departamento y mostrar estadísticas.</p>
-      </div>
+      <p>
+        La clase <b>EmployeeTree</b> implementa un árbol binario que organiza empleados por un criterio configurable (ID, nombre o carga de trabajo).
+      </p>
+      <p>
+        Permite insertar, buscar, asignar tareas óptimas, consultar empleados por departamento y mostrar estadísticas.
+      </p>
     </section>
 
-    <section id="emanager">
+    <section id="employeemanager">
       <h2>EmployeeManager.java</h2>
-      <div class="card">
-        <p>La clase <b>EmployeeManager</b> gestiona empleados con árboles binarios y mapas, facilitando búsquedas y asignaciones.</p>
-        <p>Permite agregar empleados, asignar tareas de forma óptima, mostrar empleados disponibles por habilidades y distribuir cargas de trabajo mediante un algoritmo de divide y vencerás.</p>
-      </div>
+      <p>
+        La clase <b>EmployeeManager</b> gestiona empleados con árboles binarios y mapas, facilitando búsquedas y asignaciones.
+      </p>
+      <p>
+        Permite agregar empleados, asignar tareas de forma óptima, mostrar empleados disponibles por habilidades y distribuir cargas de trabajo mediante un algoritmo de divide y vencerás.
+      </p>
     </section>
 
     <section id="main">
       <h2>Main.java</h2>
-      <div class="card">
-        <p>La clase <b>Main</b> centraliza el sistema de gestión de farmacia mediante un menú en consola.</p>
-        <p>El menú permite:</p>
-        <ul>
-          <li>Agregar, procesar, completar y eliminar tareas.</li>
-          <li>Mostrar estadísticas de tiempo estimado.</li>
-          <li>Agregar empleados, buscarlos, mostrarlos por departamento o disponibilidad.</li>
-          <li>Asignar tareas óptimas a empleados.</li>
-        </ul>
-      </div>
+      <p>
+        La clase <b>Main</b> centraliza el sistema de gestión de farmacia mediante un menú en consola.
+      </p>
+      <p>El menú permite:</p>
+      <ul>
+        <li>Agregar, procesar, completar y eliminar tareas.</li>
+        <li>Mostrar estadísticas de tiempo estimado.</li>
+        <li>Agregar empleados, buscarlos, mostrarlos por departamento o disponibilidad.</li>
+        <li>Asignar tareas óptimas a empleados.</li>
+      </ul>
     </section>
 
     <section id="guia">
-      <h2>📖 Guía de Uso del Sistema</h2>
-      <div class="card">
-        <h3>1. Iniciar el sistema</h3>
-        <p>Ejecuta el archivo <b>Main.java</b>. Se abrirá un menú interactivo en la consola.</p>
-
-        <h3>2. Menú principal</h3>
-        <p>Selecciona la opción deseada escribiendo el número correspondiente.</p>
-        <p><b>Opciones comunes:</b></p>
-        <ul>
-          <li>Agregar tarea: introduce los datos solicitados (ID, tipo, descripción, prioridad, tiempo estimado).</li>
-          <li>Procesar tarea: selecciona si deseas procesar una tarea urgente, receta, prioritaria o general.</li>
-          <li>Completar/Eliminar tarea: ingresa el ID de la tarea a gestionar.</li>
-          <li>Mostrar estadísticas: revisa cuántas tareas pendientes existen y el tiempo estimado total.</li>
-        </ul>
-
-        <h3>3. Gestión de empleados</h3>
-        <ul>
-          <li>Agregar empleado: introduce ID, nombre, departamento, puesto y habilidades.</li>
-          <li>Mostrar empleados por departamento: consulta la organización jerárquica.</li>
-          <li>Buscar por ID o habilidad: facilita localizar empleados específicos.</li>
-          <li>Asignar tareas: el sistema sugiere automáticamente el empleado más adecuado según carga de trabajo y habilidades.</li>
-        </ul>
-
-        <h3>4. Consejos prácticos</h3>
-        <ul>
-          <li>Mantén actualizada la carga de trabajo de los empleados para una asignación óptima.</li>
-          <li>Completa las tareas a tiempo para mantener la lista organizada.</li>
-          <li>Usa las búsquedas por tipo y descripción para encontrar tareas rápidamente.</li>
-        </ul>
-      </div>
+      <h2>Guía de Uso del Sistema</h2>
+      <ol>
+        <li><b>Iniciar el sistema:</b> Ejecuta el archivo <b>Main.java</b>. Se abrirá un menú interactivo en la consola.</li>
+        <li><b>Menú principal:</b> Selecciona la opción deseada escribiendo el número correspondiente.</li>
+      </ol>
+      <p>Opciones comunes:</p>
+      <ul>
+        <li>Agregar tarea: introduce los datos solicitados (ID, tipo, descripción, prioridad, tiempo estimado).</li>
+        <li>Procesar tarea: selecciona si deseas procesar una tarea urgente, receta, prioritaria o general.</li>
+        <li>Completar/Eliminar tarea: ingresa el ID de la tarea a gestionar.</li>
+        <li>Mostrar estadísticas: revisa cuántas tareas pendientes existen y el tiempo estimado total.</li>
+      </ul>
+      <h3>Gestión de empleados</h3>
+      <ul>
+        <li>Agregar empleado: introduce ID, nombre, departamento, puesto y habilidades.</li>
+        <li>Mostrar empleados por departamento: consulta la organización jerárquica.</li>
+        <li>Buscar por ID o habilidad: facilita localizar empleados específicos.</li>
+        <li>Asignar tareas: el sistema sugiere automáticamente el empleado más adecuado según carga de trabajo y habilidades.</li>
+      </ul>
+      <h3>Consejos prácticos</h3>
+      <ul>
+        <li>Mantén actualizada la carga de trabajo de los empleados para una asignación óptima.</li>
+        <li>Completa las tareas a tiempo para mantener la lista organizada.</li>
+        <li>Usa las búsquedas por tipo y descripción para encontrar tareas rápidamente.</li>
+      </ul>
     </section>
-
-  </div>
+  </main>
 
   <footer>
     Elaborado por el equipo "Yo Este"
   </footer>
 
   <script>
-    function toggleMenu() {
-      document.getElementById('menu').classList.toggle('active');
-    }
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('menu');
+    const searchInput = document.getElementById('searchInput');
+    const resultsBox = document.getElementById('results');
+    const sections = document.querySelectorAll('section');
 
-    function buscar() {
-      let input = document.getElementById('searchInput').value.toLowerCase();
-      let cards = document.getElementsByClassName('card');
-      for (let card of cards) {
-        if (card.innerText.toLowerCase().includes(input)) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
+    menuToggle.addEventListener('click', () => {
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.style.display = 'none';
+      });
+    });
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      resultsBox.innerHTML = '';
+      if (query) {
+        sections.forEach(section => {
+          const title = section.querySelector('h2').innerText.toLowerCase();
+          if (title.includes(query)) {
+            const div = document.createElement('div');
+            div.textContent = section.querySelector('h2').innerText;
+            div.addEventListener('click', () => {
+              location.href = '#' + section.id;
+              resultsBox.style.display = 'none';
+              searchInput.value = '';
+            });
+            resultsBox.appendChild(div);
+          }
+        });
+        resultsBox.style.display = resultsBox.innerHTML ? 'block' : 'none';
+      } else {
+        resultsBox.style.display = 'none';
       }
-    }
+    });
   </script>
 </body>
 </html>
