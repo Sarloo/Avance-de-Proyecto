@@ -10,6 +10,7 @@
       margin: 0;
       background-color: #f4fdf8;
       color: #333;
+      padding-bottom: 60px; /* espacio para el footer */
     }
 
     header {
@@ -125,6 +126,19 @@
       max-width: 80px;
       height: auto;
       border-radius: 6px;
+    }
+
+    /* Footer */
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #2e7d32;
+      color: white;
+      text-align: center;
+      padding: 0.8rem;
+      font-size: 0.9rem;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -263,6 +277,11 @@
       </details>
     </section>
   </main>
+
+  <!-- Footer -->
+  <footer>
+    Elaborado por el equipo <b>"Yo Este"</b>
+  </footer>
 
   <script>
     const toggle = document.querySelector(".menu-toggle");
