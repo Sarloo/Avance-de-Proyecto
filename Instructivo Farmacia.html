@@ -101,6 +101,26 @@
     section h2 {
       margin-top: 0;
       color: #006666;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    section h2::after {
+      content: "▼";
+      font-size: 0.8em;
+      transition: transform 0.3s;
+    }
+    section.collapsed h2::after {
+      transform: rotate(-90deg);
+    }
+    .section-content {
+      max-height: 1000px;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    section.collapsed .section-content {
+      max-height: 0;
     }
     footer {
       background: #004d4d;
@@ -141,164 +161,186 @@
   <main>
     <section id="tarea">
       <h2>TareaFarmacia.java</h2>
-      <p>
-        La clase <b>TareaFarmacia</b> representa una tarea dentro de la farmacia, almacenando información relevante como un identificador único, descripción, tipo (urgente, receta, inventario, administrativa o prioritaria), prioridad (alta, media o baja), fecha de creación, estado (pendiente, en proceso o completada) y el tiempo estimado para realizarla.
-      </p>
-      <p>
-        El constructor inicializa todos estos atributos y establece el estado inicial como <b>PENDIENTE</b>.  
-        Los métodos getter permiten acceder a los atributos, mientras que el setter modifica el estado de la tarea.  
-        El método <b>estaCompletada</b> verifica si el estado de la tarea es COMPLETADA.  
-        El método <b>toString</b> ofrece una representación textual de la tarea, mostrando sus datos principales de forma legible.  
-      </p>
-      <p>
-        Esta clase facilita la creación, consulta y gestión del estado de las tareas en el sistema de farmacia.
-      </p>
+      <div class="section-content">
+        <p>
+          La clase <b>TareaFarmacia</b> representa una tarea dentro de la farmacia, almacenando información relevante como un identificador único, descripción, tipo (urgente, receta, inventario, administrativa o prioritaria), prioridad (alta, media o baja), fecha de creación, estado (pendiente, en proceso o completada) y el tiempo estimado para realizarla.
+        </p>
+        <p>
+          El constructor inicializa todos estos atributos y establece el estado inicial como <b>PENDIENTE</b>.  
+          Los métodos getter permiten acceder a los atributos, mientras que el setter modifica el estado de la tarea.  
+          El método <b>estaCompletada</b> verifica si el estado de la tarea es COMPLETADA.  
+          El método <b>toString</b> ofrece una representación textual de la tarea, mostrando sus datos principales de forma legible.  
+        </p>
+        <p>
+          Esta clase facilita la creación, consulta y gestión del estado de las tareas en el sistema de farmacia.
+        </p>
+      </div>
     </section>
 
     <section id="node">
       <h2>Node.java</h2>
-      <p>
-        La clase <b>Node</b> es el elemento básico para construir estructuras de datos enlazadas, como listas, pilas y colas, dentro del sistema de farmacia.
-      </p>
-      <p>
-        Cada nodo almacena un objeto de tipo <b>TareaFarmacia</b> y una referencia al siguiente nodo en la estructura.  
-        El constructor inicializa el nodo con una tarea y la referencia al siguiente nodo como nula.  
-        Los métodos getter y setter permiten acceder y modificar tanto la tarea como el siguiente nodo.
-      </p>
+      <div class="section-content">
+        <p>
+          La clase <b>Node</b> es el elemento básico para construir estructuras de datos enlazadas, como listas, pilas y colas, dentro del sistema de farmacia.
+        </p>
+        <p>
+          Cada nodo almacena un objeto de tipo <b>TareaFarmacia</b> y una referencia al siguiente nodo en la estructura.  
+          El constructor inicializa el nodo con una tarea y la referencia al siguiente nodo como nula.  
+          Los métodos getter y setter permiten acceder y modificar tanto la tarea como el siguiente nodo.
+        </p>
+      </div>
     </section>
 
     <section id="pila">
       <h2>Pila.java</h2>
-      <p>
-        La clase <b>Pila</b> representa una pila de tareas urgentes para la farmacia, utilizando nodos enlazados.
-      </p>
-      <p>Permite:</p>
-      <ul>
-        <li>Apilar nuevas tareas en la cima.</li>
-        <li>Procesar la tarea más urgente, marcándola como completada.</li>
-        <li>Completar una tarea específica por ID.</li>
-        <li>Consultar la cima sin eliminarla.</li>
-        <li>Verificar si está vacía y contar su tamaño.</li>
-        <li>Mostrar tareas pendientes (ordenadas por prioridad) y completadas.</li>
-      </ul>
-      <p>Esta estructura facilita la gestión rápida y priorizada de las tareas urgentes.</p>
+      <div class="section-content">
+        <p>
+          La clase <b>Pila</b> representa una pila de tareas urgentes para la farmacia, utilizando nodos enlazados.
+        </p>
+        <p>Permite:</p>
+        <ul>
+          <li>Apilar nuevas tareas en la cima.</li>
+          <li>Procesar la tarea más urgente, marcándola como completada.</li>
+          <li>Completar una tarea específica por ID.</li>
+          <li>Consultar la cima sin eliminarla.</li>
+          <li>Verificar si está vacía y contar su tamaño.</li>
+          <li>Mostrar tareas pendientes (ordenadas por prioridad) y completadas.</li>
+        </ul>
+        <p>Esta estructura facilita la gestión rápida y priorizada de las tareas urgentes.</p>
+      </div>
     </section>
 
     <section id="lista">
       <h2>ListaTareas.java</h2>
-      <p>
-        La clase <b>ListaTareas</b> implementa una lista enlazada para gestionar tareas generales.
-      </p>
-      <p>Incluye funcionalidades como:</p>
-      <ul>
-        <li>Insertar tareas al final.</li>
-        <li>Completar o eliminar tareas por ID.</li>
-        <li>Buscar tareas por ID, tipo o descripción.</li>
-        <li>Contar tareas pendientes.</li>
-        <li>Mostrar pendientes y completadas ordenadas por prioridad.</li>
-        <li>Calcular recursivamente el tiempo total de tareas pendientes.</li>
-        <li>Obtener tareas ordenadas por prioridad y fecha.</li>
-      </ul>
-      <p>
-        Esto permite una administración detallada y flexible de las tareas de la farmacia.
-      </p>
+      <div class="section-content">
+        <p>
+          La clase <b>ListaTareas</b> implementa una lista enlazada para gestionar tareas generales.
+        </p>
+        <p>Incluye funcionalidades como:</p>
+        <ul>
+          <li>Insertar tareas al final.</li>
+          <li>Completar o eliminar tareas por ID.</li>
+          <li>Buscar tareas por ID, tipo o descripción.</li>
+          <li>Contar tareas pendientes.</li>
+          <li>Mostrar pendientes y completadas ordenadas por prioridad.</li>
+          <li>Calcular recursivamente el tiempo total de tareas pendientes.</li>
+          <li>Obtener tareas ordenadas por prioridad y fecha.</li>
+        </ul>
+        <p>
+          Esto permite una administración detallada y flexible de las tareas de la farmacia.
+        </p>
+      </div>
     </section>
 
     <section id="cola">
       <h2>ColaPrioridad.java</h2>
-      <p>
-        La clase <b>ColaPrioridad</b> implementa una cola de prioridad mediante un heap binario.
-      </p>
-      <p>
-        Permite insertar tareas, consultar la de mayor prioridad, procesarla (marcarla como completada y eliminarla), completar tareas por ID y mostrar todas ordenadas.
-      </p>
-      <p>
-        La comparación entre tareas se hace primero por estado (pendientes primero), luego por nivel de prioridad y finalmente por fecha de creación (más antiguas primero).
-      </p>
+      <div class="section-content">
+        <p>
+          La clase <b>ColaPrioridad</b> implementa una cola de prioridad mediante un heap binario.
+        </p>
+        <p>
+          Permite insertar tareas, consultar la de mayor prioridad, procesarla (marcarla como completada y eliminarla), completar tareas por ID y mostrar todas ordenadas.
+        </p>
+        <p>
+          La comparación entre tareas se hace primero por estado (pendientes primero), luego por nivel de prioridad y finalmente por fecha de creación (más antiguas primero).
+        </p>
+      </div>
     </section>
 
     <section id="empleado">
       <h2>Empleado.java</h2>
-      <p>
-        La clase <b>Empleado</b> representa a un trabajador de la farmacia, con atributos como ID, nombre, departamento, puesto, habilidades y carga de trabajo.
-      </p>
-      <p>
-        Incluye métodos para verificar disponibilidad, asignar carga, comprobar habilidades y obtener representación textual del empleado.  
-        Facilita la organización y consulta de las capacidades y disponibilidad de los empleados.
-      </p>
+      <div class="section-content">
+        <p>
+          La clase <b>Empleado</b> representa a un trabajador de la farmacia, con atributos como ID, nombre, departamento, puesto, habilidades y carga de trabajo.
+        </p>
+        <p>
+          Incluye métodos para verificar disponibilidad, asignar carga, comprobar habilidades y obtener representación textual del empleado.  
+          Facilita la organización y consulta de las capacidades y disponibilidad de los empleados.
+        </p>
+      </div>
     </section>
 
     <section id="employeenode">
       <h2>EmployeeNode.java</h2>
-      <p>
-        La clase <b>EmployeeNode</b> representa un nodo en un árbol binario de empleados.
-      </p>
-      <p>
-        Cada nodo contiene un empleado y referencias a hijos izquierdo y derecho.  
-        Esta clase sirve como base para construir árboles binarios de empleados, facilitando la organización jerárquica y la búsqueda eficiente dentro de la estructura.
-      </p>
+      <div class="section-content">
+        <p>
+          La clase <b>EmployeeNode</b> representa un nodo en un árbol binario de empleados.
+        </p>
+        <p>
+          Cada nodo contiene un empleado y referencias a hijos izquierdo y derecho.  
+          Esta clase sirve como base para construir árboles binarios de empleados, facilitando la organización jerárquica y la búsqueda eficiente dentro de la estructura.
+        </p>
+      </div>
     </section>
 
     <section id="employeetree">
       <h2>EmployeeTree.java</h2>
-      <p>
-        La clase <b>EmployeeTree</b> implementa un árbol binario que organiza empleados por un criterio configurable (ID, nombre o carga de trabajo).
-      </p>
-      <p>
-        Permite insertar, buscar, asignar tareas óptimas, consultar empleados por departamento y mostrar estadísticas.
-      </p>
+      <div class="section-content">
+        <p>
+          La clase <b>EmployeeTree</b> implementa un árbol binario que organiza empleados por un criterio configurable (ID, nombre o carga de trabajo).
+        </p>
+        <p>
+          Permite insertar, buscar, asignar tareas óptimas, consultar empleados por departamento y mostrar estadísticas.
+        </p>
+      </div>
     </section>
 
     <section id="employeemanager">
       <h2>EmployeeManager.java</h2>
-      <p>
-        La clase <b>EmployeeManager</b> gestiona empleados con árboles binarios y mapas, facilitando búsquedas y asignaciones.
-      </p>
-      <p>
-        Permite agregar empleados, asignar tareas de forma óptima, mostrar empleados disponibles por habilidades y distribuir cargas de trabajo mediante un algoritmo de divide y vencerás.
-      </p>
+      <div class="section-content">
+        <p>
+          La clase <b>EmployeeManager</b> gestiona empleados con árboles binarios y mapas, facilitando búsquedas y asignaciones.
+        </p>
+        <p>
+          Permite agregar empleados, asignar tareas de forma óptima, mostrar empleados disponibles por habilidades y distribuir cargas de trabajo mediante un algoritmo de divide y vencerás.
+        </p>
+      </div>
     </section>
 
     <section id="main">
       <h2>Main.java</h2>
-      <p>
-        La clase <b>Main</b> centraliza el sistema de gestión de farmacia mediante un menú en consola.
-      </p>
-      <p>El menú permite:</p>
-      <ul>
-        <li>Agregar, procesar, completar y eliminar tareas.</li>
-        <li>Mostrar estadísticas de tiempo estimado.</li>
-        <li>Agregar empleados, buscarlos, mostrarlos por departamento o disponibilidad.</li>
-        <li>Asignar tareas óptimas a empleados.</li>
-      </ul>
+      <div class="section-content">
+        <p>
+          La clase <b>Main</b> centraliza el sistema de gestión de farmacia mediante un menú en consola.
+        </p>
+        <p>El menú permite:</p>
+        <ul>
+          <li>Agregar, procesar, completar y eliminar tareas.</li>
+          <li>Mostrar estadísticas de tiempo estimado.</li>
+          <li>Agregar empleados, buscarlos, mostrarlos por departamento o disponibilidad.</li>
+          <li>Asignar tareas óptimas a empleados.</li>
+        </ul>
+      </div>
     </section>
 
     <section id="guia">
       <h2>Guía de Uso del Sistema</h2>
-      <ol>
-        <li><b>Iniciar el sistema:</b> Ejecuta el archivo <b>Main.java</b>. Se abrirá un menú interactivo en la consola.</li>
-        <li><b>Menú principal:</b> Selecciona la opción deseada escribiendo el número correspondiente.</li>
-      </ol>
-      <p>Opciones comunes:</p>
-      <ul>
-        <li>Agregar tarea: introduce los datos solicitados (ID, tipo, descripción, prioridad, tiempo estimado).</li>
-        <li>Procesar tarea: selecciona si deseas procesar una tarea urgente, receta, prioritaria o general.</li>
-        <li>Completar/Eliminar tarea: ingresa el ID de la tarea a gestionar.</li>
-        <li>Mostrar estadísticas: revisa cuántas tareas pendientes existen y el tiempo estimado total.</li>
-      </ul>
-      <h3>Gestión de empleados</h3>
-      <ul>
-        <li>Agregar empleado: introduce ID, nombre, departamento, puesto y habilidades.</li>
-        <li>Mostrar empleados por departamento: consulta la organización jerárquica.</li>
-        <li>Buscar por ID o habilidad: facilita localizar empleados específicos.</li>
-        <li>Asignar tareas: el sistema sugiere automáticamente el empleado más adecuado según carga de trabajo y habilidades.</li>
-      </ul>
-      <h3>Consejos prácticos</h3>
-      <ul>
-        <li>Mantén actualizada la carga de trabajo de los empleados para una asignación óptima.</li>
-        <li>Completa las tareas a tiempo para mantener la lista organizada.</li>
-        <li>Usa las búsquedas por tipo y descripción para encontrar tareas rápidamente.</li>
-      </ul>
+      <div class="section-content">
+        <ol>
+          <li><b>Iniciar el sistema:</b> Ejecuta el archivo <b>Main.java</b>. Se abrirá un menú interactivo en la consola.</li>
+          <li><b>Menú principal:</b> Selecciona la opción deseada escribiendo el número correspondiente.</li>
+        </ol>
+        <p>Opciones comunes:</p>
+        <ul>
+          <li>Agregar tarea: introduce los datos solicitados (ID, tipo, descripción, prioridad, tiempo estimado).</li>
+          <li>Procesar tarea: selecciona si deseas procesar una tarea urgente, receta, prioritaria o general.</li>
+          <li>Completar/Eliminar tarea: ingresa el ID de la tarea a gestionar.</li>
+          <li>Mostrar estadísticas: revisa cuántas tareas pendientes existen y el tiempo estimado total.</li>
+        </ul>
+        <h3>Gestión de empleados</h3>
+        <ul>
+          <li>Agregar empleado: introduce ID, nombre, departamento, puesto y habilidades.</li>
+          <li>Mostrar empleados por departamento: consulta la organización jerárquica.</li>
+          <li>Buscar por ID o habilidad: facilita localizar empleados específicos.</li>
+          <li>Asignar tareas: el sistema sugiere automáticamente el empleado más adecuado según carga de trabajo y habilidades.</li>
+        </ul>
+        <h3>Consejos prácticos</h3>
+        <ul>
+          <li>Mantén actualizada la carga de trabajo de los empleados para una asignación óptima.</li>
+          <li>Completa las tareas a tiempo para mantener la lista organizada.</li>
+          <li>Usa las búsquedas por tipo y descripción para encontrar tareas rápidamente.</li>
+        </ul>
+      </div>
     </section>
   </main>
 
@@ -312,6 +354,14 @@
     const searchInput = document.getElementById('searchInput');
     const resultsBox = document.getElementById('results');
     const sections = document.querySelectorAll('section');
+
+    // Función para alternar la visibilidad del contenido de las secciones
+    sections.forEach(section => {
+      const title = section.querySelector('h2');
+      title.addEventListener('click', () => {
+        section.classList.toggle('collapsed');
+      });
+    });
 
     menuToggle.addEventListener('click', () => {
       menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
@@ -336,6 +386,8 @@
               location.href = '#' + section.id;
               resultsBox.style.display = 'none';
               searchInput.value = '';
+              // Asegurarse de que la sección esté expandida al navegar a ella
+              section.classList.remove('collapsed');
             });
             resultsBox.appendChild(div);
           }
