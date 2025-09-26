@@ -17,6 +17,7 @@
       color: white;
       padding: 1.5rem;
       text-align: center;
+      position: relative;
     }
 
     header h1 {
@@ -29,7 +30,7 @@
       font-size: 1rem;
     }
 
-    /* Estilos del menú */
+    /* Menú */
     .menu-toggle {
       position: absolute;
       top: 1rem;
@@ -50,6 +51,7 @@
       background: #388e3c;
       padding-top: 4rem;
       transition: left 0.3s ease;
+      z-index: 1000;
     }
 
     nav.active {
@@ -80,15 +82,22 @@
 
     main {
       padding: 2rem;
-      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
     }
 
     section {
-      margin-bottom: 2rem;
       border: 1px solid #c8e6c9;
-      border-radius: 8px;
+      border-radius: 10px;
       background: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
     }
 
     section summary {
@@ -97,12 +106,25 @@
       font-size: 1.2rem;
       font-weight: bold;
       background: #a5d6a7;
-      border-radius: 8px 8px 0 0;
+      border-bottom: 1px solid #c8e6c9;
     }
 
-    section p, section pre {
+    section p, section ul {
       padding: 1rem;
       margin: 0;
+    }
+
+    .img-area {
+      padding: 1rem;
+      text-align: center;
+      background: #f9f9f9;
+      border-top: 1px solid #eee;
+    }
+
+    .img-area img {
+      max-width: 80px;
+      height: auto;
+      border-radius: 6px;
     }
   </style>
 </head>
@@ -134,85 +156,110 @@
     <section id="guia">
       <details>
         <summary>Guía de Uso del Sistema</summary>
-        <p><b>1. Iniciar el sistema:</b> Ejecuta <code>Main.java</code>. Se abrirá un menú interactivo en la consola.</p>
-        <p><b>2. Menú principal:</b> Selecciona la opción deseada escribiendo el número correspondiente.</p>
+        <p>Explica cómo iniciar el sistema, usar el menú principal, gestionar empleados y consejos prácticos para optimizar el uso del software.</p>
+        <div class="img-area">
+          <img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" alt="Guía de Uso">
+        </div>
       </details>
     </section>
 
     <section id="tarea">
       <details>
         <summary>TareaFarmacia.java</summary>
-        <p>Gestiona las tareas dentro del sistema de farmacia, incluyendo creación, procesamiento y finalización de tareas.</p>
+        <p>Gestiona tareas en la farmacia con atributos como ID, tipo, descripción, prioridad, estado y tiempo estimado.</p>
+        <div class="img-area">
+          <img src="https://cdn-icons-png.flaticon.com/512/2965/2965560.png" alt="Tareas">
+        </div>
       </details>
     </section>
 
     <section id="node">
       <details>
         <summary>Node.java</summary>
-        <p>Clase básica para nodos de estructuras de datos.</p>
+        <p>Clase básica para estructuras enlazadas que almacena una tarea y referencia al siguiente nodo.</p>
+        <div class="img-area">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Nodo">
+        </div>
       </details>
     </section>
 
     <section id="pila">
       <details>
         <summary>Pila.java</summary>
-        <p>Implementa la estructura de datos de tipo pila para manejar tareas.</p>
+        <p>Maneja una pila de tareas urgentes, permitiendo apilar, procesar, completar y mostrar tareas.</p>
+        <div class="img-area">
+          <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="Pila">
+        </div>
       </details>
     </section>
 
     <section id="lista">
       <details>
         <summary>ListaTareas.java</summary>
-        <p>Lista que administra las tareas pendientes en el sistema.</p>
+        <p>Lista enlazada para tareas generales con búsqueda, inserción, eliminación, estadísticas y ordenamiento.</p>
+        <div class="img-area">
+          <img src="https://cdn-icons-png.flaticon.com/512/906/906334.png" alt="Lista de Tareas">
+        </div>
       </details>
     </section>
 
     <section id="cola">
       <details>
         <summary>ColaPrioridad.java</summary>
-        <p>Gestiona tareas según prioridad para un flujo más eficiente.</p>
+        <p>Cola de prioridad con heap binario para procesar primero las tareas más urgentes y antiguas.</p>
+        <div class="img-area">
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="Cola de Prioridad">
+        </div>
       </details>
     </section>
 
     <section id="empleado">
       <details>
         <summary>Empleado.java</summary>
-        <p>Representa a los empleados del sistema de farmacia con sus atributos principales.</p>
+        <p>Representa a un trabajador con atributos como ID, nombre, puesto, departamento y habilidades.</p>
+        <div class="img-area">
+          <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" alt="Empleado">
+        </div>
       </details>
     </section>
 
     <section id="enode">
       <details>
         <summary>EmployeeNode.java</summary>
-        <p>Nodo para estructuras que gestionan empleados.</p>
+        <p>Nodo para un árbol binario de empleados que contiene un empleado y referencias a hijos.</p>
+        <div class="img-area">
+          <img src="https://cdn-icons-png.flaticon.com/512/3063/3063176.png" alt="Nodo Empleado">
+        </div>
       </details>
     </section>
 
     <section id="etree">
       <details>
         <summary>EmployeeTree.java</summary>
-        <p>Árbol binario que organiza empleados según sus características.</p>
+        <p>Árbol binario que organiza empleados por criterios como ID, nombre o carga de trabajo.</p>
+        <div class="img-area">
+          <img src="https://cdn-icons-png.flaticon.com/512/484/484167.png" alt="Árbol de Empleados">
+        </div>
       </details>
     </section>
 
     <section id="emanager">
       <details>
         <summary>EmployeeManager.java</summary>
-        <p>Gestiona empleados con árboles binarios y mapas, facilitando búsquedas y asignaciones.</p>
-        <p>Permite agregar empleados, asignar tareas de forma óptima, mostrar empleados disponibles por habilidades y distribuir cargas de trabajo mediante un algoritmo de divide y vencerás.</p>
+        <p>Gestiona empleados con árboles binarios y mapas para asignaciones óptimas y consultas rápidas.</p>
+        <div class="img-area">
+          <img src="https://cdn-icons-png.flaticon.com/512/2721/2721290.png" alt="Gestión de Empleados">
+        </div>
       </details>
     </section>
 
     <section id="main">
       <details>
         <summary>Main.java</summary>
-        <p>Centraliza el sistema de gestión de farmacia mediante un menú en consola.</p>
-        <ul>
-          <li>Agregar, procesar, completar y eliminar tareas.</li>
-          <li>Mostrar estadísticas de tiempo estimado.</li>
-          <li>Agregar empleados, buscarlos, mostrarlos por departamento o disponibilidad.</li>
-          <li>Asignar tareas óptimas a empleados.</li>
-        </ul>
+        <p>Clase principal que ejecuta el sistema con un menú en consola para manejar tareas y empleados.</p>
+        <div class="img-area">
+          <img src="https://cdn-icons-png.flaticon.com/512/1006/1006555.png" alt="Main">
+        </div>
       </details>
     </section>
   </main>
@@ -220,9 +267,25 @@
   <script>
     const toggle = document.querySelector(".menu-toggle");
     const menu = document.getElementById("menu");
+    const links = menu.querySelectorAll("a");
 
     toggle.addEventListener("click", () => {
       menu.classList.toggle("active");
+    });
+
+    links.forEach(link => {
+      link.addEventListener("click", e => {
+        menu.classList.remove("active");
+        const targetId = link.getAttribute("href").substring(1);
+        const section = document.getElementById(targetId);
+        if (section) {
+          const details = section.querySelector("details");
+          if (details) {
+            details.open = true;
+            details.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+      });
     });
   </script>
 </body>
