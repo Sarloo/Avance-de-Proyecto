@@ -5,54 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema de Farmacia</title>
   <style>
+    /* ===== Estilos base ===== */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      background-color: #f4fdf8;
+      background: linear-gradient(135deg, #e8f5e9, #ffffff);
       color: #333;
-      padding-bottom: 60px; /* espacio para el footer */
+      padding-bottom: 70px;
     }
 
+    /* ===== Header ===== */
     header {
-      background-color: #2e7d32;
+      background: linear-gradient(90deg, #2e7d32, #66bb6a);
       color: white;
-      padding: 1.5rem;
+      padding: 2rem 1rem;
       text-align: center;
       position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
     header h1 {
       margin: 0;
-      font-size: 2rem;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
     }
 
     header p {
       margin: 0.5rem 0 0;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      opacity: 0.9;
     }
 
-    /* Menú */
+    /* ===== Menú hamburguesa ===== */
     .menu-toggle {
       position: absolute;
       top: 1rem;
       left: 1rem;
-      background: none;
+      background: rgba(255,255,255,0.2);
       border: none;
+      border-radius: 50%;
       color: white;
       font-size: 2rem;
       cursor: pointer;
+      padding: 0.3rem 0.6rem;
+      transition: background 0.3s;
+    }
+
+    .menu-toggle:hover {
+      background: rgba(255,255,255,0.4);
     }
 
     nav {
       position: fixed;
       top: 0;
-      left: -250px;
-      width: 250px;
+      left: -260px;
+      width: 260px;
       height: 100%;
-      background: #388e3c;
+      background: rgba(46,125,50,0.95);
+      backdrop-filter: blur(6px);
       padding-top: 4rem;
-      transition: left 0.3s ease;
+      transition: left 0.4s ease;
       z-index: 1000;
+      box-shadow: 4px 0 10px rgba(0,0,0,0.2);
     }
 
     nav.active {
@@ -62,6 +76,7 @@
     nav ul {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
 
     nav ul li {
@@ -72,15 +87,18 @@
       color: white;
       text-decoration: none;
       font-size: 1.2rem;
-      padding: 0.5rem 1rem;
+      padding: 0.7rem 1rem;
       display: block;
-      transition: background 0.2s;
+      border-radius: 6px;
+      transition: background 0.3s, transform 0.2s;
     }
 
     nav ul li a:hover {
-      background: #2e7d32;
+      background: rgba(255,255,255,0.2);
+      transform: translateX(5px);
     }
 
+    /* ===== Main (cards) ===== */
     main {
       padding: 2rem;
       display: grid;
@@ -89,16 +107,17 @@
     }
 
     section {
-      border: 1px solid #c8e6c9;
-      border-radius: 10px;
-      background: white;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
       overflow: hidden;
-      transition: transform 0.2s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     section:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.15);
     }
 
     section summary {
@@ -106,8 +125,15 @@
       padding: 1rem;
       font-size: 1.2rem;
       font-weight: bold;
-      background: #a5d6a7;
+      background: #81c784;
+      color: #1b5e20;
       border-bottom: 1px solid #c8e6c9;
+      transition: background 0.3s;
+    }
+
+    section summary:hover {
+      background: #66bb6a;
+      color: white;
     }
 
     section p, section ul {
@@ -118,27 +144,34 @@
     .img-area {
       padding: 1rem;
       text-align: center;
-      background: #f9f9f9;
+      background: #f1f8e9;
       border-top: 1px solid #eee;
     }
 
     .img-area img {
-      max-width: 80px;
+      max-width: 100px;
       height: auto;
-      border-radius: 6px;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      transition: transform 0.3s;
     }
 
-    /* Footer */
+    .img-area img:hover {
+      transform: scale(1.1);
+    }
+
+    /* ===== Footer ===== */
     footer {
       position: fixed;
       bottom: 0;
       width: 100%;
-      background: #2e7d32;
+      background: linear-gradient(90deg, #2e7d32, #388e3c);
       color: white;
       text-align: center;
-      padding: 0.8rem;
-      font-size: 0.9rem;
-      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+      padding: 0.9rem;
+      font-size: 1rem;
+      font-weight: 500;
+      box-shadow: 0 -4px 8px rgba(0,0,0,0.2);
     }
   </style>
 </head>
@@ -169,10 +202,10 @@
   <main>
     <section id="guia">
       <details>
-        <summary>Guía de Uso del Sistema</summary>
-        <p>Explica cómo iniciar el sistema, usar el menú principal, gestionar empleados y consejos prácticos para optimizar el uso del software.</p>
+        <summary>Guía de Uso</summary>
+        <p>Aquí puedes colocar la explicación detallada del uso del sistema.</p>
         <div class="img-area">
-          <img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" alt="Guía de Uso">
+          <img src="https://cdn-icons-png.flaticon.com/512/2966/2966485.png" alt="Farmacia">
         </div>
       </details>
     </section>
