@@ -1,84 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instructivo - Sistema de Farmacia</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Gestión de Farmacia - Instructivo</title>
   <style>
-    /* ===== Estilos base ===== */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      background: linear-gradient(135deg, #e8f5e9, #ffffff);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f9f9;
       color: #333;
-      padding-bottom: 80px;
     }
 
-    /* ===== Header / Hero ===== */
     header {
-      background: linear-gradient(90deg, #2e7d32, #66bb6a);
+      background: #008080;
       color: white;
-      text-align: center;
-      padding: 4rem 1rem 3rem;
-      position: relative;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    header img {
-      max-width: 100px;
-      display: block;
-      margin: 0 auto 1rem;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    header p {
-      margin: 1rem 0 2rem;
       font-size: 1.2rem;
+      margin: 0;
     }
 
-    header a {
-      background: white;
-      color: #2e7d32;
-      padding: 0.8rem 1.5rem;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    header a:hover {
-      background: #1b5e20;
-      color: white;
-    }
-
-    /* ===== Menú hamburguesa ===== */
-    .menu-toggle {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: rgba(255,255,255,0.2);
-      border: none;
-      border-radius: 50%;
-      color: white;
-      font-size: 2rem;
+    /* Menú hamburguesa */
+    .menu-btn {
+      font-size: 24px;
       cursor: pointer;
-      padding: 0.3rem 0.6rem;
+      display: block;
     }
 
     nav {
       position: fixed;
       top: 0;
-      left: -260px;
-      width: 260px;
+      left: -250px;
+      width: 250px;
       height: 100%;
-      background: rgba(46,125,50,0.95);
-      backdrop-filter: blur(6px);
-      padding-top: 4rem;
-      transition: left 0.4s ease;
+      background: #006666;
+      padding-top: 60px;
+      transition: left 0.3s ease;
       z-index: 1000;
     }
 
@@ -89,256 +52,244 @@
     nav ul {
       list-style: none;
       padding: 0;
-      margin: 0;
     }
 
     nav ul li {
-      margin: 1rem 0;
+      padding: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
     }
 
     nav ul li a {
       color: white;
       text-decoration: none;
-      font-size: 1.1rem;
-      padding: 0.7rem 1rem;
-      display: block;
-      border-radius: 6px;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    nav ul li a:hover {
-      background: rgba(255,255,255,0.2);
-      transform: translateX(5px);
-    }
-
-    /* ===== Barra de búsqueda ===== */
-    .search-box {
-      text-align: center;
-      margin: 2rem 1rem;
-    }
-
-    .search-box input {
-      width: 90%;
-      max-width: 500px;
-      padding: 0.8rem;
-      border-radius: 20px;
-      border: 1px solid #81c784;
-      outline: none;
       font-size: 1rem;
     }
 
-    /* ===== Main ===== */
-    main {
-      padding: 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+    /* Contenido principal */
+    .container {
+      padding: 20px;
     }
 
     section {
-      border-radius: 15px;
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
+      margin-bottom: 40px;
     }
 
-    section:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    h2 {
+      color: #006666;
+      margin-bottom: 15px;
     }
 
-    section summary {
-      cursor: pointer;
-      padding: 1rem;
-      font-size: 1.2rem;
-      font-weight: bold;
-      background: #81c784;
-      color: #1b5e20;
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: transform 0.2s;
     }
 
-    section p, section ul {
-      padding: 1rem;
-      margin: 0;
+    .card:hover {
+      transform: scale(1.02);
     }
 
-    .img-area {
-      text-align: center;
-      padding: 1rem;
-      background: #f1f8e9;
-    }
-
-    .img-area img {
-      max-width: 100px;
+    .card img {
+      width: 100%;
       border-radius: 8px;
-      transition: transform 0.3s;
+      margin-bottom: 10px;
     }
 
-    .img-area img:hover {
-      transform: scale(1.1);
-    }
-
-    /* ===== Timeline ===== */
-    .timeline {
-      padding: 2rem;
-    }
-
-    .step {
-      margin: 1rem 0;
-      padding: 1rem;
-      border-left: 4px solid #2e7d32;
-      background: #f1f8e9;
-      border-radius: 5px;
-    }
-
-    /* ===== Consejos ===== */
-    .tips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 1rem;
-    }
-
-    .tip {
-      flex: 1 1 200px;
-      background: #e8f5e9;
-      border-left: 5px solid #66bb6a;
-      padding: 1rem;
-      border-radius: 8px;
-    }
-
-    /* ===== FAQ ===== */
-    .faq {
-      padding: 2rem;
-    }
-
-    .faq details {
-      margin: 1rem 0;
-      border: 1px solid #81c784;
-      border-radius: 8px;
-      padding: 0.5rem 1rem;
-      background: #f9fff9;
-    }
-
-    /* ===== Footer ===== */
     footer {
+      background: #004d4d;
+      color: white;
+      text-align: center;
+      padding: 10px;
       position: fixed;
       bottom: 0;
       width: 100%;
-      background: linear-gradient(90deg, #2e7d32, #388e3c);
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      font-weight: 500;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <button class="menu-toggle">☰</button>
-    <img src="https://cdn-icons-png.flaticon.com/512/2966/2966485.png" alt="Logo Farmacia">
-    <h1>Sistema de Farmacia</h1>
-    <p>Instructivo y Guía de Uso</p>
-    <a href="#guia">Ver Guía de Uso</a>
+    <h1>📘 Instructivo - Sistema de Gestión de Farmacia</h1>
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
   </header>
 
-  <!-- Menú -->
+  <!-- Menú hamburguesa -->
   <nav id="menu">
     <ul>
-      <li><a href="#guia">Guía de Uso</a></li>
-      <li><a href="#tarea">TareaFarmacia</a></li>
-      <li><a href="#node">Node</a></li>
-      <li><a href="#pila">Pila</a></li>
-      <li><a href="#lista">ListaTareas</a></li>
-      <li><a href="#cola">ColaPrioridad</a></li>
-      <li><a href="#empleado">Empleado</a></li>
-      <li><a href="#enode">EmployeeNode</a></li>
-      <li><a href="#etree">EmployeeTree</a></li>
-      <li><a href="#emanager">EmployeeManager</a></li>
-      <li><a href="#main">Main</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#tarea" onclick="toggleMenu()">TareaFarmacia</a></li>
+      <li><a href="#node" onclick="toggleMenu()">Node</a></li>
+      <li><a href="#pila" onclick="toggleMenu()">Pila</a></li>
+      <li><a href="#lista" onclick="toggleMenu()">ListaTareas</a></li>
+      <li><a href="#cola" onclick="toggleMenu()">ColaPrioridad</a></li>
+      <li><a href="#empleado" onclick="toggleMenu()">Empleado</a></li>
+      <li><a href="#enode" onclick="toggleMenu()">EmployeeNode</a></li>
+      <li><a href="#etree" onclick="toggleMenu()">EmployeeTree</a></li>
+      <li><a href="#emanager" onclick="toggleMenu()">EmployeeManager</a></li>
+      <li><a href="#main" onclick="toggleMenu()">Main</a></li>
+      <li><a href="#guia" onclick="toggleMenu()">Guía de Uso</a></li>
     </ul>
   </nav>
 
-  <!-- Barra de búsqueda -->
-  <div class="search-box">
-    <input type="text" id="search" placeholder="Buscar en el instructivo...">
+  <!-- Contenido -->
+  <div class="container">
+
+    <section id="tarea">
+      <h2>TareaFarmacia.java</h2>
+      <div class="card">
+        <p>La clase <b>TareaFarmacia</b> representa una tarea dentro de la farmacia, almacenando información como un identificador único, descripción, tipo (urgente, receta, inventario, administrativa o prioritaria), prioridad, fecha de creación, estado y tiempo estimado.</p>
+        <p>El constructor inicializa los atributos y el estado inicial como PENDIENTE. Incluye getters, un setter para el estado, el método <i>estaCompletada</i> y <i>toString</i> para una representación textual.</p>
+        <img src="farmacia1.jpg" alt="Ejemplo de tareas en farmacia">
+      </div>
+    </section>
+
+    <section id="node">
+      <h2>Node.java</h2>
+      <div class="card">
+        <p>La clase <b>Node</b> es el elemento básico para listas, pilas y colas. Cada nodo almacena un objeto <b>TareaFarmacia</b> y la referencia al siguiente nodo.</p>
+        <p>Incluye constructor, getters y setters.</p>
+      </div>
+    </section>
+
+    <section id="pila">
+      <h2>Pila.java</h2>
+      <div class="card">
+        <p>La clase <b>Pila</b> representa una pila de tareas urgentes:</p>
+        <ul>
+          <li>Apilar nuevas tareas.</li>
+          <li>Procesar la más urgente.</li>
+          <li>Completar por ID.</li>
+          <li>Consultar cima, verificar vacía y tamaño.</li>
+          <li>Mostrar pendientes y completadas.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="lista">
+      <h2>ListaTareas.java</h2>
+      <div class="card">
+        <p>La clase <b>ListaTareas</b> implementa una lista enlazada para gestionar tareas generales:</p>
+        <ul>
+          <li>Insertar tareas.</li>
+          <li>Completar o eliminar por ID.</li>
+          <li>Buscar por ID, tipo o descripción.</li>
+          <li>Contar pendientes.</li>
+          <li>Calcular tiempo total recursivamente.</li>
+          <li>Ordenar por prioridad y fecha.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="cola">
+      <h2>ColaPrioridad.java</h2>
+      <div class="card">
+        <p>La clase <b>ColaPrioridad</b> usa un heap binario para manejar prioridades. Permite:</p>
+        <ul>
+          <li>Insertar tareas.</li>
+          <li>Consultar la más prioritaria.</li>
+          <li>Procesar y completar por ID.</li>
+          <li>Mostrar ordenadas.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="empleado">
+      <h2>Empleado.java</h2>
+      <div class="card">
+        <p>La clase <b>Empleado</b> representa a un trabajador de la farmacia con ID, nombre, departamento, puesto, habilidades y carga de trabajo.</p>
+        <p>Incluye métodos para verificar disponibilidad, asignar carga, comprobar habilidades y representación textual.</p>
+      </div>
+    </section>
+
+    <section id="enode">
+      <h2>EmployeeNode.java</h2>
+      <div class="card">
+        <p>La clase <b>EmployeeNode</b> representa un nodo de un árbol binario con un empleado y referencias a hijos.</p>
+        <p>Sirve como base para organización jerárquica y búsqueda eficiente.</p>
+      </div>
+    </section>
+
+    <section id="etree">
+      <h2>EmployeeTree.java</h2>
+      <div class="card">
+        <p>La clase <b>EmployeeTree</b> organiza empleados por criterios como ID, nombre o carga de trabajo.</p>
+        <p>Permite insertar, buscar, asignar tareas óptimas, consultar por departamento y mostrar estadísticas.</p>
+      </div>
+    </section>
+
+    <section id="emanager">
+      <h2>EmployeeManager.java</h2>
+      <div class="card">
+        <p>La clase <b>EmployeeManager</b> gestiona empleados con árboles y mapas. Permite:</p>
+        <ul>
+          <li>Agregar empleados.</li>
+          <li>Asignar tareas óptimas.</li>
+          <li>Mostrar por habilidades.</li>
+          <li>Distribuir cargas de trabajo con divide y vencerás.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="main">
+      <h2>Main.java</h2>
+      <div class="card">
+        <p>La clase <b>Main</b> centraliza el sistema mediante un menú en consola. Opciones:</p>
+        <ul>
+          <li>Agregar, procesar, completar y eliminar tareas.</li>
+          <li>Mostrar estadísticas.</li>
+          <li>Agregar y buscar empleados.</li>
+          <li>Mostrar por departamento/disponibilidad.</li>
+          <li>Asignar tareas óptimas.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="guia">
+      <h2>📖 Guía de Uso del Sistema</h2>
+      <div class="card">
+        <h3>1. Iniciar el sistema</h3>
+        <p>Ejecuta <b>Main.java</b> para abrir el menú.</p>
+
+        <h3>2. Menú principal</h3>
+        <p>Selecciona la opción escribiendo su número.</p>
+
+        <h3>Opciones comunes:</h3>
+        <ul>
+          <li>Agregar tarea.</li>
+          <li>Procesar tarea (urgente, receta, prioritaria o general).</li>
+          <li>Completar/Eliminar tarea.</li>
+          <li>Mostrar estadísticas.</li>
+        </ul>
+
+        <h3>3. Gestión de empleados</h3>
+        <ul>
+          <li>Agregar empleado.</li>
+          <li>Mostrar empleados por departamento.</li>
+          <li>Buscar por ID o habilidad.</li>
+          <li>Asignar tareas automáticamente.</li>
+        </ul>
+
+        <h3>4. Consejos prácticos</h3>
+        <ul>
+          <li>Actualiza la carga de trabajo de empleados.</li>
+          <li>Completa tareas a tiempo.</li>
+          <li>Usa búsquedas por tipo o descripción.</li>
+        </ul>
+      </div>
+    </section>
+
   </div>
 
-  <!-- Contenido principal -->
-  <main>
-    <!-- Guía de uso -->
-    <section id="guia">
-      <details open>
-        <summary>Guía de Uso</summary>
-        <div class="timeline">
-          <div class="step">1. Inicia el sistema ejecutando <b>Main.java</b>.</div>
-          <div class="step">2. Usa el menú para agregar, procesar o eliminar tareas.</div>
-          <div class="step">3. Consulta estadísticas y gestiona empleados.</div>
-          <div class="step">4. Asigna tareas de forma óptima con el sistema.</div>
-        </div>
-        <div class="tips">
-          <div class="tip">✅ Mantén actualizada la carga de trabajo de los empleados.</div>
-          <div class="tip">⏱️ Completa las tareas a tiempo para mantener orden.</div>
-          <div class="tip">🔍 Usa búsquedas por tipo y descripción.</div>
-        </div>
-      </details>
-    </section>
-
-    <!-- Clases -->
-    <section id="tarea"><details><summary>TareaFarmacia</summary><p>La clase TareaFarmacia representa una tarea dentro de la farmacia...</p></details></section>
-    <section id="node"><details><summary>Node</summary><p>La clase Node es el elemento básico para construir estructuras...</p></details></section>
-    <section id="pila"><details><summary>Pila</summary><p>La clase Pila representa una pila de tareas urgentes...</p></details></section>
-    <section id="lista"><details><summary>ListaTareas</summary><p>La clase ListaTareas implementa una lista enlazada...</p></details></section>
-    <section id="cola"><details><summary>ColaPrioridad</summary><p>La clase ColaPrioridad implementa una cola de prioridad...</p></details></section>
-    <section id="empleado"><details><summary>Empleado</summary><p>La clase Empleado representa a un trabajador de la farmacia...</p></details></section>
-    <section id="enode"><details><summary>EmployeeNode</summary><p>La clase EmployeeNode representa un nodo en un árbol binario...</p></details></section>
-    <section id="etree"><details><summary>EmployeeTree</summary><p>La clase EmployeeTree implementa un árbol binario...</p></details></section>
-    <section id="emanager"><details><summary>EmployeeManager</summary><p>La clase EmployeeManager gestiona empleados...</p></details></section>
-    <section id="main"><details><summary>Main</summary><p>La clase Main centraliza el sistema de gestión...</p></details></section>
-
-    <!-- FAQ -->
-    <section id="faq">
-      <details open>
-        <summary>Preguntas Frecuentes</summary>
-        <div class="faq">
-          <details><summary>¿Cómo agrego una tarea?</summary><p>Desde el menú principal selecciona "Agregar tarea" e ingresa los datos.</p></details>
-          <details><summary>¿Cómo asigno tareas a empleados?</summary><p>El sistema busca automáticamente el empleado más disponible y capacitado.</p></details>
-          <details><summary>¿Qué pasa si elimino una tarea?</summary><p>Se borra de la lista y no contará en las estadísticas.</p></details>
-        </div>
-      </details>
-    </section>
-  </main>
-
-  <!-- Footer -->
   <footer>
-    Elaborado por el equipo <b>"Yo Este"</b>
+    Elaborado por el equipo "Yo Este"
   </footer>
 
   <script>
-    const toggle = document.querySelector(".menu-toggle");
-    const menu = document.getElementById("menu");
-    const links = menu.querySelectorAll("a");
-    const search = document.getElementById("search");
-
-    toggle.addEventListener("click", () => {
-      menu.classList.toggle("active");
-    });
-
-    links.forEach(link => {
-      link.addEventListener("click", () => {
-        menu.classList.remove("active");
-      });
-    });
-
-    // Búsqueda en tiempo real
-    search.addEventListener("input", () => {
-      const term = search.value.toLowerCase();
-      document.querySelectorAll("main section").forEach(sec => {
-        const text = sec.innerText.toLowerCase();
-        sec.style.display = text.includes(term) ? "block" : "none";
-      });
-    });
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('active');
+    }
   </script>
 </body>
 </html>
