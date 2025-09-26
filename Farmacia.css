@@ -1,101 +1,109 @@
-/* Reset */
-* {
+/* Estilo general */
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  background-color: #f8f9fa;
   color: #333;
-  padding: 0;
 }
 
+/* Header */
 header {
-  background-color: #004085;
+  background: #2c3e50;
   color: white;
-  padding: 2rem 1rem;
   text-align: center;
-  border-bottom: 4px solid #003366;
-}
-
-header h1 {
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
-}
-
-header p {
-  font-size: 1.1rem;
-  opacity: 0.9;
-}
-
-nav {
-  background-color: #e9ecef;
-  padding: 1rem;
-  border-bottom: 1px solid #ccc;
-}
-
-nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  justify-content: center;
-  gap: 1rem;
-}
-
-nav a {
-  text-decoration: none;
-  color: #004085;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: #0069d9;
-}
-
-main {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-section {
-  background-color: white;
-  margin-bottom: 2rem;
   padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-section h2 {
-  margin-bottom: 0.8rem;
-  color: #004085;
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
 }
 
-section p {
+/* Menú hamburguesa */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.menu-toggle {
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+  background: #2c3e50;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: #34495e;
+  padding: 2rem 1rem;
+  transition: 0.3s;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar h2 {
+  color: white;
   margin-bottom: 1rem;
 }
 
-section ul {
-  list-style: disc;
-  padding-left: 1.5rem;
+.sidebar ul {
+  list-style: none;
+  padding: 0;
 }
 
-code {
-  background: #f1f1f1;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-size: 0.95rem;
+.sidebar ul li {
+  margin: 0.8rem 0;
 }
 
-footer {
-  text-align: center;
-  padding: 1.5rem;
-  background-color: #e9ecef;
-  border-top: 1px solid #ccc;
-  font-size: 0.9rem;
-  color: #555;
+.sidebar ul li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.sidebar ul li a:hover {
+  color: #1abc9c;
+}
+
+/* Contenido principal */
+main {
+  max-width: 900px;
+  margin: 5rem auto 2rem auto;
+  padding: 1rem;
+}
+
+details {
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+summary {
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] {
+  border-left: 4px solid #3498db;
 }
