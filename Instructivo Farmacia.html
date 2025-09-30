@@ -260,6 +260,29 @@
       padding: 2px 4px;
       border-radius: 3px;
     }
+    
+    /* Estilos para el botón de guía */
+    .guide-button-container {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .guide-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #008080, #006666);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1.2em;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+    .guide-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, #009999, #007777);
+    }
   </style>
 </head>
 <body>
@@ -280,8 +303,6 @@
     <a href="#employeenode">EmployeeNode</a>
     <a href="#employeetree">EmployeeTree</a>
     <a href="#employeemanager">EmployeeManager</a>
-    <a href="#main">Main</a>
-    <a href="#guia">Guía de Uso</a>
     <a href="#estructuras">Estructuras de Datos</a>
     <a href="#ejemplos">Ejemplos Prácticos</a>
     <a href="#flujos">Flujos de Trabajo</a>
@@ -290,6 +311,10 @@
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Buscar en el instructivo...">
     <div id="results" class="search-results"></div>
+  </div>
+
+  <div class="guide-button-container">
+    <a href="guia-uso.html" class="guide-btn">Guía de Uso del Sistema</a>
   </div>
 
   <main>
@@ -612,95 +637,6 @@ Empleado empleadoOptimo = arbol.asignarTareaOptima(tarea);
       </div>
     </section>
 
-    <section id="main">
-      <h2>Main.java</h2>
-      <div class="section-content">
-        <p>
-          La clase <b>Main</b> centraliza el sistema de gestión de farmacia mediante un menú en consola.
-        </p>
-        
-        <div class="diagram">
-          <p><strong>Flujo del Programa Principal:</strong></p>
-          <div style="text-align: center; padding: 10px; background: #e8f4f4; border-radius: 5px;">
-            Inicio → Menú Principal → Opción Seleccionada → Ejecución → Volver al Menú
-          </div>
-        </div>
-        
-        <p>El menú permite:</p>
-        <ul>
-          <li>Agregar, procesar, completar y eliminar tareas.</li>
-          <li>Mostrar estadísticas de tiempo estimado.</li>
-          <li>Agregar empleados, buscarlos, mostrarlos por departamento o disponibilidad.</li>
-          <li>Asignar tareas óptimas a empleados.</li>
-        </ul>
-        
-        <div class="code-example">
-// Estructura básica del método main<br>
-public static void main(String[] args) {<br>
-&nbsp;&nbsp;boolean salir = false;<br>
-&nbsp;&nbsp;while (!salir) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;mostrarMenu();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;int opcion = leerOpcion();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;salir = procesarOpcion(opcion);<br>
-&nbsp;&nbsp;}<br>
-}
-        </div>
-      </div>
-    </section>
-
-    <section id="guia">
-      <h2>Guía de Uso del Sistema</h2>
-      <div class="section-content">
-        <ol>
-          <li><b>Iniciar el sistema:</b> Ejecuta el archivo <b>Main.java</b>. Se abrirá un menú interactivo en la consola.</li>
-          <li><b>Menú principal:</b> Selecciona la opción deseada escribiendo el número correspondiente.</li>
-        </ol>
-        
-        <div class="feature-list">
-          <div class="feature-item">
-            <strong>Gestión de Tareas</strong><br>
-            <a href="#tarea" class="btn">Ver Detalles</a>
-          </div>
-          <div class="feature-item">
-            <strong>Gestión de Empleados</strong><br>
-            <a href="#empleado" class="btn">Ver Detalles</a>
-          </div>
-          <div class="feature-item">
-            <strong>Estadísticas</strong><br>
-            <a href="#main" class="btn">Ver Detalles</a>
-          </div>
-          <div class="feature-item">
-            <strong>Estructuras de Datos</strong><br>
-            <a href="#estructuras" class="btn">Ver Detalles</a>
-          </div>
-        </div>
-        
-        <p>Opciones comunes:</p>
-        <ul>
-          <li>Agregar tarea: introduce los datos solicitados (ID, tipo, descripción, prioridad, tiempo estimado).</li>
-          <li>Procesar tarea: selecciona si deseas procesar una tarea urgente, receta, prioritaria o general.</li>
-          <li>Completar/Eliminar tarea: ingresa el ID de la tarea a gestionar.</li>
-          <li>Mostrar estadísticas: revisa cuántas tareas pendientes existen y el tiempo estimado total.</li>
-        </ul>
-        
-        <h3>Gestión de empleados</h3>
-        <ul>
-          <li>Agregar empleado: introduce ID, nombre, departamento, puesto y habilidades.</li>
-          <li>Mostrar empleados por departamento: consulta la organización jerárquica.</li>
-          <li>Buscar por ID o habilidad: facilita localizar empleados específicos.</li>
-          <li>Asignar tareas: el sistema sugiere automáticamente el empleado más adecuado según carga de trabajo y habilidades.</li>
-        </ul>
-        
-        <h3>Consejos prácticos</h3>
-        <ul>
-          <li>Mantén actualizada la carga de trabajo de los empleados para una asignación óptima.</li>
-          <li>Completa las tareas a tiempo para mantener la lista organizada.</li>
-          <li>Usa las búsquedas por tipo y descripción para encontrar tareas rápidamente.</li>
-          <li>Revisa regularmente las estadísticas para identificar cuellos de botella.</li>
-        </ul>
-      </div>
-    </section>
-
     <section id="estructuras">
       <h2>Estructuras de Datos Utilizadas</h2>
       <div class="section-content">
@@ -814,7 +750,7 @@ public static void main(String[] args) {<br>
   </main>
 
   <footer>
-    Elaborado por el equipo "Yo Este" | Versión 2.0 | <a href="#guia" style="color: #80d0d0;">Volver al Inicio</a>
+    Elaborado por el equipo "Yo Este" | Versión 2.0 | <a href="#tarea" style="color: #80d0d0;">Volver al Inicio</a>
   </footer>
 
   <script>
