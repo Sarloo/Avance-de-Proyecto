@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía de Uso - Sistema de Gestión de Farmacia</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #008080, #006666);
+      color: white;
+      padding: 15px;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    header img {
+      width: 45px;
+      height: 45px;
+      margin: 0 10px;
+      filter: brightness(0) invert(1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+    .menu-toggle {
+      position: absolute;
+      left: 15px;
+      top: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    nav {
+      display: none;
+      flex-direction: column;
+      background: #006666;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 220px;
+      height: 100vh;
+      padding-top: 20px;
+      z-index: 1000;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+    nav a {
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      display: block;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: #009999;
+    }
+    .search-bar {
+      text-align: center;
+      margin: 15px;
+      position: relative;
+    }
+    .search-bar input {
+      padding: 10px 15px;
+      width: 70%;
+      border-radius: 25px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: box-shadow 0.3s;
+    }
+    .search-bar input:focus {
+      box-shadow: 0 0 5px rgba(0, 102, 102, 0.5);
+    }
+    .search-results {
+      margin: 10px auto;
+      width: 70%;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: none;
+      position: absolute;
+      z-index: 500;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .search-results div {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+    }
+    .search-results div:hover {
+      background: #f0f0f0;
+    }
+    main {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    section {
+      background: white;
+      padding: 0;
+      border-radius: 12px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-bottom: 25px;
+    }
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+    section h2 {
+      margin: 0;
+      color: white;
+      background: #008080;
+      padding: 15px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+    }
+    section h2:hover {
+      background: #006666;
+    }
+    section h2::after {
+      content: "▼";
+      font-size: 0.8em;
+      transition: transform 0.3s;
+    }
+    section.collapsed h2::after {
+      transform: rotate(-90deg);
+    }
+    .section-content {
+      padding: 20px;
+      max-height: 1000px;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out;
+    }
+    section.collapsed .section-content {
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    footer {
+      background: #004d4d;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    
+    /* Estilos específicos para la guía */
+    .guide-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .guide-header h1 {
+      color: #008080;
+      margin-bottom: 10px;
+    }
+    .guide-header p {
+      color: #666;
+      font-size: 1.1em;
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .image-container {
+      text-align: center;
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+    }
+    .image-placeholder {
+      width: 100%;
+      height: 200px;
+      background: #e8f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      color: #008080;
+      font-weight: bold;
+    }
+    .image-caption {
+      font-style: italic;
+      color: #666;
+      font-size: 0.9em;
+    }
+    .step-by-step {
+      margin: 20px 0;
+    }
+    .step {
+      display: flex;
+      margin-bottom: 15px;
+      align-items: flex-start;
+    }
+    .step-number {
+      background: #008080;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    .step-content {
+      flex: 1;
+    }
+    .code-example {
+      background: #f5f5f5;
+      border-left: 4px solid #008080;
+      padding: 10px;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      border-radius: 0 5px 5px 0;
+      overflow-x: auto;
+    }
+    .tip-box {
+      background: #e8f4f4;
+      border-left: 4px solid #008080;
+      padding: 10px 15px;
+      margin: 15px 0;
+      border-radius: 0 5px 5px 0;
+    }
+    .btn {
+      display: inline-block;
+      background: #008080;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin: 5px;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #006666;
+    }
+    .back-btn {
+      display: inline-block;
+      background: #008080;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      margin: 20px 0;
+      transition: all 0.3s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .back-btn:hover {
+      background: #006666;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .feature-item {
+      background: #f0f8f8;
+      padding: 10px;
+      border-radius: 5px;
+      border-left: 3px solid #008080;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    .comparison-table th, .comparison-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    .comparison-table th {
+      background: #008080;
+      color: white;
+    }
+    .comparison-table tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    
+    @media (max-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="menu-toggle">☰</span>
+    <img src="https://cdn-icons-png.flaticon.com/512/2966/2966488.png" alt="Farmacia">
+    <h1>Guía de Uso - Sistema de Gestión de Farmacia</h1>
+    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Hospital">
+  </header>
+
+  <nav id="menu">
+    <a href="#inicio">Inicio</a>
+    <a href="#main">Main.java</a>
+    <a href="#menu-sistema">Menú del Sistema</a>
+    <a href="#gestion-tareas">Gestión de Tareas</a>
+    <a href="#gestion-empleados">Gestión de Empleados</a>
+    <a href="#estadisticas">Estadísticas</a>
+    <a href="#ejemplos">Ejemplos Prácticos</a>
+    <a href="index.html">Volver al Instructivo</a>
+  </nav>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Buscar en la guía de uso...">
+    <div id="results" class="search-results"></div>
+  </div>
+
+  <main>
+    <div class="guide-header">
+      <h1>Guía Completa de Uso del Sistema</h1>
+      <p>Esta guía te ayudará a comprender y utilizar eficientemente el Sistema de Gestión de Farmacia</p>
+      <a href="index.html" class="back-btn">← Volver al Instructivo Principal</a>
+    </div>
+
+    <section id="inicio">
+      <h2>Introducción al Sistema</h2>
+      <div class="section-content">
+        <div class="content-grid">
+          <div>
+            <p>El <strong>Sistema de Gestión de Farmacia</strong> es una aplicación Java diseñada para optimizar la administración de tareas y recursos humanos en una farmacia. Combina estructuras de datos eficientes con una interfaz intuitiva.</p>
+            
+            <div class="tip-box">
+              <strong>Características principales:</strong>
+              <ul>
+                <li>Gestión priorizada de tareas</li>
+                <li>Asignación inteligente de empleados</li>
+                <li>Seguimiento de estado en tiempo real</li>
+                <li>Estadísticas y reportes</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Diagrama general del sistema]
+            </div>
+            <p class="image-caption">Arquitectura general del Sistema de Gestión de Farmacia</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="main">
+      <h2>Main.java - Punto de Entrada</h2>
+      <div class="section-content">
+        <div class="content-grid">
+          <div>
+            <p>La clase <strong>Main.java</strong> es el punto de entrada del sistema. Contiene el método principal (<code>main</code>) y gestiona el flujo de ejecución de la aplicación.</p>
+            
+            <div class="code-example">
+// Estructura básica de Main.java<br>
+public class Main {<br>
+&nbsp;&nbsp;public static void main(String[] args) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Inicializar componentes del sistema<br>
+&nbsp;&nbsp;&nbsp;&nbsp;inicializarSistema();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Mostrar menú principal<br>
+&nbsp;&nbsp;&nbsp;&nbsp;mostrarMenuPrincipal();<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;private static void mostrarMenuPrincipal() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;// Implementación del menú interactivo<br>
+&nbsp;&nbsp;}<br>
+}
+            </div>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Flujo del programa Main.java]
+            </div>
+            <p class="image-caption">Diagrama de flujo del método main</p>
+          </div>
+        </div>
+        
+        <h3>Funciones principales de Main.java</h3>
+        <div class="feature-list">
+          <div class="feature-item">
+            <strong>Inicialización</strong><br>
+            Carga todos los componentes necesarios del sistema
+          </div>
+          <div class="feature-item">
+            <strong>Menú Interactivo</strong><br>
+            Interfaz de usuario por consola para navegación
+          </div>
+          <div class="feature-item">
+            <strong>Gestión de Excepciones</strong><br>
+            Manejo de errores y entrada inválida
+          </div>
+          <div class="feature-item">
+            <strong>Coordinación</strong><br>
+            Orquesta la interacción entre módulos
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu-sistema">
+      <h2>Menú del Sistema</h2>
+      <div class="section-content">
+        <div class="content-grid">
+          <div>
+            <p>El sistema presenta un menú interactivo en consola con las siguientes opciones:</p>
+            
+            <div class="step-by-step">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <strong>Gestión de Tareas</strong> - Agregar, procesar, completar y eliminar tareas
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <strong>Gestión de Empleados</strong> - Agregar, buscar y asignar empleados
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <strong>Estadísticas</strong> - Ver reportes y métricas del sistema
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <strong>Salir</strong> - Cerrar la aplicación
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Captura del menú principal]
+            </div>
+            <p class="image-caption">Vista del menú principal en consola</p>
+          </div>
+        </div>
+        
+        <div class="tip-box">
+          <strong>Consejo de Navegación:</strong> Utilice los números correspondientes a cada opción para navegar rápidamente por el menú. Presione Enter después de cada selección.
+        </div>
+      </div>
+    </section>
+
+    <section id="gestion-tareas">
+      <h2>Gestión de Tareas</h2>
+      <div class="section-content">
+        <div class="content-grid">
+          <div>
+            <h3>Agregar Nueva Tarea</h3>
+            <div class="step-by-step">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  Seleccione la opción "Agregar tarea" en el menú principal
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  Complete los datos solicitados:
+                  <ul>
+                    <li>ID único de la tarea</li>
+                    <li>Descripción</li>
+                    <li>Tipo (Urgente, Receta, Inventario, etc.)</li>
+                    <li>Prioridad (Alta, Media, Baja)</li>
+                    <li>Tiempo estimado en minutos</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  Confirme la creación de la tarea
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Ejemplo de formulario de tarea]
+            </div>
+            <p class="image-caption">Formulario para agregar nueva tarea</p>
+          </div>
+        </div>
+        
+        <h3>Procesar Tareas</h3>
+        <div class="content-grid">
+          <div>
+            <p>El sistema organiza automáticamente las tareas según su tipo y prioridad:</p>
+            <ul>
+              <li><strong>Tareas Urgentes:</strong> Van a la pila (LIFO) para procesamiento inmediato</li>
+              <li><strong>Tareas Prioritarias:</strong> Se gestionan mediante cola de prioridad</li>
+              <li><strong>Tareas Generales:</strong> Se almacenan en lista enlazada para procesamiento por orden</li>
+            </ul>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Diagrama de flujo de tareas]
+            </div>
+            <p class="image-caption">Flujo de procesamiento de tareas</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gestion-empleados">
+      <h2>Gestión de Empleados</h2>
+      <div class="section-content">
+        <div class="content-grid">
+          <div>
+            <h3>Registro de Empleados</h3>
+            <p>Para agregar un nuevo empleado al sistema:</p>
+            
+            <div class="step-by-step">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  Seleccione "Agregar empleado" en el menú de gestión
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  Proporcione la información requerida:
+                  <ul>
+                    <li>ID del empleado</li>
+                    <li>Nombre completo</li>
+                    <li>Departamento</li>
+                    <li>Puesto</li>
+                    <li>Habilidades (separadas por comas)</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  El sistema asignará automáticamente una carga de trabajo inicial
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Formulario de empleado]
+            </div>
+            <p class="image-caption">Formulario de registro de empleados</p>
+          </div>
+        </div>
+        
+        <h3>Asignación Inteligente de Tareas</h3>
+        <div class="content-grid">
+          <div>
+            <p>El sistema utiliza un algoritmo de asignación óptima que considera:</p>
+            <ul>
+              <li><strong>Habilidades del empleado:</strong> Coincidencia con los requisitos de la tarea</li>
+              <li><strong>Carga de trabajo actual:</strong> Distribución equitativa</li>
+              <li><strong>Disponibilidad:</strong> Empleados con menor carga primero</li>
+              <li><strong>Experiencia:</strong> Prioriza empleados con experiencia relevante</li>
+            </ul>
+            
+            <div class="tip-box">
+              <strong>Consejo:</strong> Revise regularmente la carga de trabajo de los empleados para evitar saturación y mantener la productividad.
+            </div>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Algoritmo de asignación]
+            </div>
+            <p class="image-caption">Diagrama del algoritmo de asignación</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="estadisticas">
+      <h2>Estadísticas y Reportes</h2>
+      <div class="section-content">
+        <div class="content-grid">
+          <div>
+            <p>El sistema genera diversos reportes para facilitar la toma de decisiones:</p>
+            
+            <div class="feature-list">
+              <div class="feature-item">
+                <strong>Tareas Pendientes</strong><br>
+                Número y tiempo estimado total
+              </div>
+              <div class="feature-item">
+                <strong>Eficiencia por Departamento</strong><br>
+                Métricas de productividad por área
+              </div>
+              <div class="feature-item">
+                <strong>Carga de Trabajo</strong><br>
+                Distribución entre empleados
+              </div>
+              <div class="feature-item">
+                <strong>Tiempos de Procesamiento</strong><br>
+                Promedios y tendencias
+              </div>
+            </div>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Ejemplo de reporte]
+            </div>
+            <p class="image-caption">Ejemplo de reporte estadístico generado</p>
+          </div>
+        </div>
+        
+        <h3>Acceso a Estadísticas</h3>
+        <div class="step-by-step">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              Seleccione "Estadísticas" en el menú principal
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              Elija el tipo de reporte deseado
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              Revise la información presentada
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              Utilice los datos para optimizar operaciones
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ejemplos">
+      <h2>Ejemplos Prácticos de Uso</h2>
+      <div class="section-content">
+        <div class="content-grid">
+          <div>
+            <h3>Escenario 1: Receta Urgente</h3>
+            <div class="step-by-step">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  Un cliente llega con una receta marcada como URGENTE
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  Se crea una tarea con tipo "URGENTE" y prioridad "ALTA"
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  El sistema asigna automáticamente a un farmacéutico disponible
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  La tarea se completa y se registra en el sistema
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Flujo receta urgente]
+            </div>
+            <p class="image-caption">Procesamiento de receta urgente</p>
+          </div>
+        </div>
+        
+        <div class="content-grid">
+          <div>
+            <h3>Escenario 2: Inventario Mensual</h3>
+            <div class="step-by-step">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  Programación del inventario mensual
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  Creación de tarea tipo "INVENTARIO" con prioridad "MEDIA"
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  Asignación a personal de almacén con habilidades en inventario
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  Seguimiento del progreso hasta completar
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Proceso de inventario]
+            </div>
+            <p class="image-caption">Gestión del proceso de inventario</p>
+          </div>
+        </div>
+        
+        <div class="tip-box">
+          <strong>Mejores Prácticas:</strong>
+          <ul>
+            <li>Revise diariamente las tareas pendientes</li>
+            <li>Actualice el estado de las tareas conforme avanza</li>
+            <li>Utilice las estadísticas para identificar cuellos de botella</li>
+            <li>Mantenga actualizada la información de los empleados</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Elaborado por el equipo "Yo Este" | Guía de Uso v1.0 | <a href="#inicio" style="color: #80d0d0;">Volver al Inicio</a>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('menu');
+    const searchInput = document.getElementById('searchInput');
+    const resultsBox = document.getElementById('results');
+    const sections = document.querySelectorAll('section');
+
+    // Función para alternar la visibilidad del contenido de las secciones
+    sections.forEach(section => {
+      const title = section.querySelector('h2');
+      title.addEventListener('click', () => {
+        section.classList.toggle('collapsed');
+      });
+    });
+
+    menuToggle.addEventListener('click', () => {
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.style.display = 'none';
+      });
+    });
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      resultsBox.innerHTML = '';
+      if (query) {
+        sections.forEach(section => {
+          const title = section.querySelector('h2').innerText.toLowerCase();
+          if (title.includes(query)) {
+            const div = document.createElement('div');
+            div.textContent = section.querySelector('h2').innerText;
+            div.addEventListener('click', () => {
+              location.href = '#' + section.id;
+              resultsBox.style.display = 'none';
+              searchInput.value = '';
+              // Asegurarse de que la sección esté expandida al navegar a ella
+              section.classList.remove('collapsed');
+            });
+            resultsBox.appendChild(div);
+          }
+        });
+        resultsBox.style.display = resultsBox.innerHTML ? 'block' : 'none';
+      } else {
+        resultsBox.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
