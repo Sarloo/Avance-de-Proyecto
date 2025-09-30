@@ -53,6 +53,7 @@
       padding-top: 20px;
       z-index: 1000;
       box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      overflow-y: auto;
     }
     nav a {
       color: white;
@@ -60,6 +61,7 @@
       text-decoration: none;
       display: block;
       transition: background 0.3s;
+      border-bottom: 1px solid #008080;
     }
     nav a:hover {
       background: #009999;
@@ -246,6 +248,13 @@
       margin: 15px 0;
       border-radius: 0 5px 5px 0;
     }
+    .warning-box {
+      background: #ffe8e8;
+      border-left: 4px solid #ff4444;
+      padding: 10px 15px;
+      margin: 15px 0;
+      border-radius: 0 5px 5px 0;
+    }
     .btn {
       display: inline-block;
       background: #008080;
@@ -304,6 +313,30 @@
     .comparison-table tr:nth-child(even) {
       background: #f9f9f9;
     }
+    .method-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    .method-table th, .method-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    .method-table th {
+      background: #008080;
+      color: white;
+    }
+    .method-table tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .class-hierarchy {
+      background: #f0f8f8;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+    }
     
     @media (max-width: 768px) {
       .content-grid {
@@ -322,11 +355,17 @@
 
   <nav id="menu">
     <a href="#inicio">Inicio</a>
+    <a href="#arquitectura">Arquitectura del Sistema</a>
     <a href="#main">Main.java</a>
+    <a href="#clases-principales">Clases Principales</a>
+    <a href="#estructuras-datos">Estructuras de Datos</a>
     <a href="#menu-sistema">Menú del Sistema</a>
     <a href="#gestion-tareas">Gestión de Tareas</a>
     <a href="#gestion-empleados">Gestión de Empleados</a>
+    <a href="#algoritmos">Algoritmos Implementados</a>
     <a href="#estadisticas">Estadísticas</a>
+    <a href="#configuracion">Configuración</a>
+    <a href="#resolucion-problemas">Resolución de Problemas</a>
     <a href="#ejemplos">Ejemplos Prácticos</a>
     <a href="index.html">Volver al Instructivo</a>
   </nav>
@@ -357,6 +396,7 @@
                 <li>Asignación inteligente de empleados</li>
                 <li>Seguimiento de estado en tiempo real</li>
                 <li>Estadísticas y reportes</li>
+                <li>Múltiples estructuras de datos optimizadas</li>
               </ul>
             </div>
           </div>
@@ -366,6 +406,97 @@
               [Diagrama general del sistema]
             </div>
             <p class="image-caption">Arquitectura general del Sistema de Gestión de Farmacia</p>
+          </div>
+        </div>
+        
+        <h3>Requisitos del Sistema</h3>
+        <div class="feature-list">
+          <div class="feature-item">
+            <strong>Java 8 o superior</strong><br>
+            JDK instalado y configurado
+          </div>
+          <div class="feature-item">
+            <strong>Memoria RAM</strong><br>
+            Mínimo 2GB recomendados
+          </div>
+          <div class="feature-item">
+            <strong>Sistema Operativo</strong><br>
+            Windows, Linux o macOS
+          </div>
+          <div class="feature-item">
+            <strong>Terminal/Consola</strong><br>
+            Para ejecutar la aplicación
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="arquitectura">
+      <h2>Arquitectura del Sistema</h2>
+      <div class="section-content">
+        <div class="content-grid">
+          <div>
+            <h3>Modelo de Capas</h3>
+            <p>El sistema sigue una arquitectura modular organizada en capas:</p>
+            
+            <div class="step-by-step">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <strong>Capa de Presentación</strong><br>
+                  Interfaz de consola (Main.java)
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <strong>Capa de Lógica de Negocio</strong><br>
+                  Gestores (EmployeeManager) y controladores
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <strong>Capa de Estructuras de Datos</strong><br>
+                  Listas, pilas, colas y árboles
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <strong>Capa de Entidades</strong><br>
+                  TareaFarmacia, Empleado, Node
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Diagrama de arquitectura]
+            </div>
+            <p class="image-caption">Diagrama de capas del sistema</p>
+          </div>
+        </div>
+        
+        <h3>Flujo de Datos</h3>
+        <div class="content-grid">
+          <div>
+            <p>El sistema maneja el flujo de información de la siguiente manera:</p>
+            <ol>
+              <li>Entrada del usuario mediante menú de consola</li>
+              <li>Procesamiento por los gestores correspondientes</li>
+              <li>Almacenamiento en estructuras de datos optimizadas</li>
+              <li>Recuperación y presentación de resultados</li>
+              <li>Actualización de estados y estadísticas</li>
+            </ol>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Flujo de datos]
+            </div>
+            <p class="image-caption">Diagrama de flujo de datos</p>
           </div>
         </div>
       </div>
@@ -404,23 +535,148 @@ public class Main {<br>
           </div>
         </div>
         
-        <h3>Funciones principales de Main.java</h3>
+        <h3>Métodos Principales de Main.java</h3>
+        <table class="method-table">
+          <tr>
+            <th>Método</th>
+            <th>Descripción</th>
+            <th>Parámetros</th>
+          </tr>
+          <tr>
+            <td>main(String[] args)</td>
+            <td>Punto de entrada de la aplicación</td>
+            <td>args - Argumentos de línea de comandos</td>
+          </tr>
+          <tr>
+            <td>mostrarMenuPrincipal()</td>
+            <td>Muestra el menú interactivo principal</td>
+            <td>Ninguno</td>
+          </tr>
+          <tr>
+            <td>procesarOpcion(int opcion)</td>
+            <td>Ejecuta la acción correspondiente a la opción seleccionada</td>
+            <td>opcion - Número de opción del menú</td>
+          </tr>
+          <tr>
+            <td>inicializarSistema()</td>
+            <td>Prepara todas las estructuras de datos necesarias</td>
+            <td>Ninguno</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="clases-principales">
+      <h2>Clases Principales del Sistema</h2>
+      <div class="section-content">
+        <h3>Jerarquía de Clases</h3>
+        <div class="class-hierarchy">
+          SistemaGestiónFarmacia<br>
+          ├── Main<br>
+          ├── TareaFarmacia<br>
+          ├── Node<br>
+          ├── Empleado<br>
+          ├── EmployeeNode<br>
+          ├── Estructuras de Datos<br>
+          │&nbsp;&nbsp;├── Pila<br>
+          │&nbsp;&nbsp;├── ListaTareas<br>
+          │&nbsp;&nbsp;├── ColaPrioridad<br>
+          │&nbsp;&nbsp;└── EmployeeTree<br>
+          └── Gestores<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;└── EmployeeManager
+        </div>
+        
+        <h3>Descripción de Clases</h3>
         <div class="feature-list">
           <div class="feature-item">
-            <strong>Inicialización</strong><br>
-            Carga todos los componentes necesarios del sistema
+            <strong>TareaFarmacia</strong><br>
+            Representa una tarea con ID, tipo, prioridad, estado y tiempo estimado
           </div>
           <div class="feature-item">
-            <strong>Menú Interactivo</strong><br>
-            Interfaz de usuario por consola para navegación
+            <strong>Empleado</strong><br>
+            Modela un empleado con habilidades, carga de trabajo y departamento
           </div>
           <div class="feature-item">
-            <strong>Gestión de Excepciones</strong><br>
-            Manejo de errores y entrada inválida
+            <strong>EmployeeManager</strong><br>
+            Gestiona empleados usando árboles binarios y algoritmos de asignación
           </div>
           <div class="feature-item">
-            <strong>Coordinación</strong><br>
-            Orquesta la interacción entre módulos
+            <strong>Estructuras de Datos</strong><br>
+            Implementaciones optimizadas para diferentes tipos de tareas
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="estructuras-datos">
+      <h2>Estructuras de Datos Implementadas</h2>
+      <div class="section-content">
+        <div class="content-grid">
+          <div>
+            <h3>Comparación de Estructuras</h3>
+            <table class="comparison-table">
+              <tr>
+                <th>Estructura</th>
+                <th>Complejidad Insercion</th>
+                <th>Complejidad Búsqueda</th>
+                <th>Uso en Sistema</th>
+              </tr>
+              <tr>
+                <td>Lista Enlazada</td>
+                <td>O(1)</td>
+                <td>O(n)</td>
+                <td>Tareas generales</td>
+              </tr>
+              <tr>
+                <td>Pila (LIFO)</td>
+                <td>O(1)</td>
+                <td>O(1)</td>
+                <td>Tareas urgentes</td>
+              </tr>
+              <tr>
+                <td>Cola Prioridad</td>
+                <td>O(log n)</td>
+                <td>O(1)</td>
+                <td>Tareas prioritarias</td>
+              </tr>
+              <tr>
+                <td>Árbol Binario</td>
+                <td>O(log n)</td>
+                <td>O(log n)</td>
+                <td>Organización empleados</td>
+              </tr>
+            </table>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Visualización estructuras]
+            </div>
+            <p class="image-caption">Comparación visual de estructuras de datos</p>
+          </div>
+        </div>
+        
+        <h3>Selección de Estructuras por Tipo de Tarea</h3>
+        <div class="content-grid">
+          <div>
+            <div class="tip-box">
+              <strong>Pila - Tareas Urgentes</strong><br>
+              Último en entrar, primero en salir. Ideal para emergencias.
+            </div>
+            <div class="tip-box">
+              <strong>Cola de Prioridad - Tareas Prioritarias</strong><br>
+              Ordenamiento por importancia, no por orden de llegada.
+            </div>
+          </div>
+          <div>
+            <div class="tip-box">
+              <strong>Lista Enlazada - Tareas Generales</strong><br>
+              Flexibilidad para inserción y eliminación en cualquier posición.
+            </div>
+            <div class="tip-box">
+              <strong>Árbol Binario - Empleados</strong><br>
+              Búsqueda eficiente y organización jerárquica.
+            </div>
           </div>
         </div>
       </div>
@@ -469,8 +725,24 @@ public class Main {<br>
           </div>
         </div>
         
-        <div class="tip-box">
-          <strong>Consejo de Navegación:</strong> Utilice los números correspondientes a cada opción para navegar rápidamente por el menú. Presione Enter después de cada selección.
+        <h3>Navegación Avanzada</h3>
+        <div class="content-grid">
+          <div>
+            <p><strong>Atajos de Teclado:</strong></p>
+            <ul>
+              <li>Use números para seleccionar opciones rápidamente</li>
+              <li>Presione Enter después de cada entrada</li>
+              <li>Use Ctrl+C para salir en caso de emergencia</li>
+            </ul>
+          </div>
+          <div>
+            <p><strong>Validación de Entrada:</strong></p>
+            <ul>
+              <li>El sistema valida todos los datos ingresados</li>
+              <li>Mensajes de error descriptivos</li>
+              <li>Oportunidad de corregir entradas inválidas</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -480,31 +752,58 @@ public class Main {<br>
       <div class="section-content">
         <div class="content-grid">
           <div>
-            <h3>Agregar Nueva Tarea</h3>
+            <h3>Tipos de Tareas Disponibles</h3>
+            <div class="feature-list">
+              <div class="feature-item">
+                <strong>URGENTE</strong><br>
+                Atención inmediata, va a la pila
+              </div>
+              <div class="feature-item">
+                <strong>RECETA</strong><br>
+                Procesamiento de recetas médicas
+              </div>
+              <div class="feature-item">
+                <strong>INVENTARIO</strong><br>
+                Control y gestión de stock
+              </div>
+              <div class="feature-item">
+                <strong>ADMINISTRATIVA</strong><br>
+                Tareas de oficina y gestión
+              </div>
+            </div>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Diagrama de tipos de tareas]
+            </div>
+            <p class="image-caption">Clasificación de tipos de tareas</p>
+          </div>
+        </div>
+        
+        <h3>Estados de una Tarea</h3>
+        <div class="content-grid">
+          <div>
             <div class="step-by-step">
               <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                  Seleccione la opción "Agregar tarea" en el menú principal
+                  <strong>PENDIENTE</strong><br>
+                  Tarea creada pero no asignada
                 </div>
               </div>
               <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                  Complete los datos solicitados:
-                  <ul>
-                    <li>ID único de la tarea</li>
-                    <li>Descripción</li>
-                    <li>Tipo (Urgente, Receta, Inventario, etc.)</li>
-                    <li>Prioridad (Alta, Media, Baja)</li>
-                    <li>Tiempo estimado en minutos</li>
-                  </ul>
+                  <strong>EN PROCESO</strong><br>
+                  Tarea asignada y en ejecución
                 </div>
               </div>
               <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                  Confirme la creación de la tarea
+                  <strong>COMPLETADA</strong><br>
+                  Tarea finalizada exitosamente
                 </div>
               </div>
             </div>
@@ -512,28 +811,9 @@ public class Main {<br>
           
           <div class="image-container">
             <div class="image-placeholder">
-              [Ejemplo de formulario de tarea]
+              [Flujo de estados]
             </div>
-            <p class="image-caption">Formulario para agregar nueva tarea</p>
-          </div>
-        </div>
-        
-        <h3>Procesar Tareas</h3>
-        <div class="content-grid">
-          <div>
-            <p>El sistema organiza automáticamente las tareas según su tipo y prioridad:</p>
-            <ul>
-              <li><strong>Tareas Urgentes:</strong> Van a la pila (LIFO) para procesamiento inmediato</li>
-              <li><strong>Tareas Prioritarias:</strong> Se gestionan mediante cola de prioridad</li>
-              <li><strong>Tareas Generales:</strong> Se almacenan en lista enlazada para procesamiento por orden</li>
-            </ul>
-          </div>
-          
-          <div class="image-container">
-            <div class="image-placeholder">
-              [Diagrama de flujo de tareas]
-            </div>
-            <p class="image-caption">Flujo de procesamiento de tareas</p>
+            <p class="image-caption">Diagrama de transición de estados</p>
           </div>
         </div>
       </div>
@@ -542,35 +822,110 @@ public class Main {<br>
     <section id="gestion-empleados">
       <h2>Gestión de Empleados</h2>
       <div class="section-content">
+        <h3>Estructura de Datos para Empleados</h3>
         <div class="content-grid">
           <div>
-            <h3>Registro de Empleados</h3>
-            <p>Para agregar un nuevo empleado al sistema:</p>
+            <p>El sistema utiliza un <strong>árbol binario de búsqueda</strong> para organizar a los empleados, permitiendo:</p>
+            <ul>
+              <li>Búsqueda eficiente (O(log n))</li>
+              <li>Inserción ordenada</li>
+              <li>Recorridos in-order, pre-order y post-order</li>
+              <li>Balanceo automático</li>
+            </ul>
+            
+            <div class="code-example">
+// Ejemplo de creación del árbol de empleados<br>
+EmployeeTree arbolEmpleados = new EmployeeTree();<br>
+arbolEmpleados.insertar(empleado1);<br>
+arbolEmpleados.insertar(empleado2);<br>
+Empleado encontrado = arbolEmpleados.buscar(idBuscado);
+            </div>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Árbol binario de empleados]
+            </div>
+            <p class="image-caption">Estructura del árbol binario de empleados</p>
+          </div>
+        </div>
+        
+        <h3>Atributos del Empleado</h3>
+        <table class="method-table">
+          <tr>
+            <th>Atributo</th>
+            <th>Tipo</th>
+            <th>Descripción</th>
+          </tr>
+          <tr>
+            <td>id</td>
+            <td>int</td>
+            <td>Identificador único del empleado</td>
+          </tr>
+          <tr>
+            <td>nombre</td>
+            <td>String</td>
+            <td>Nombre completo del empleado</td>
+          </tr>
+          <tr>
+            <td>departamento</td>
+            <td>String</td>
+            <td>Área de trabajo (Farmacia, Almacén, Administración)</td>
+          </tr>
+          <tr>
+            <td>puesto</td>
+            <td>String</td>
+            <td>Cargo o posición</td>
+          </tr>
+          <tr>
+            <td>habilidades</td>
+            <td>List&lt;String&gt;</td>
+            <td>Lista de habilidades especializadas</td>
+          </tr>
+          <tr>
+            <td>cargaTrabajo</td>
+            <td>int</td>
+            <td>Nivel de carga actual (0-10)</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="algoritmos">
+      <h2>Algoritmos Implementados</h2>
+      <div class="section-content">
+        <div class="content-grid">
+          <div>
+            <h3>Algoritmo de Asignación Óptima</h3>
+            <p>El sistema utiliza un algoritmo que considera múltiples factores:</p>
             
             <div class="step-by-step">
               <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                  Seleccione "Agregar empleado" en el menú de gestión
+                  <strong>Filtrado por Habilidades</strong><br>
+                  Solo empleados con habilidades requeridas
                 </div>
               </div>
               <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                  Proporcione la información requerida:
-                  <ul>
-                    <li>ID del empleado</li>
-                    <li>Nombre completo</li>
-                    <li>Departamento</li>
-                    <li>Puesto</li>
-                    <li>Habilidades (separadas por comas)</li>
-                  </ul>
+                  <strong>Evaluación de Carga</strong><br>
+                  Prioriza empleados con menor carga de trabajo
                 </div>
               </div>
               <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                  El sistema asignará automáticamente una carga de trabajo inicial
+                  <strong>Experiencia Relevante</strong><br>
+                  Considera experiencia en tipo de tarea similar
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <strong>Selección Final</strong><br>
+                  Empleado con mejor puntuación combinada
                 </div>
               </div>
             </div>
@@ -578,33 +933,43 @@ public class Main {<br>
           
           <div class="image-container">
             <div class="image-placeholder">
-              [Formulario de empleado]
+              [Diagrama algoritmo asignación]
             </div>
-            <p class="image-caption">Formulario de registro de empleados</p>
+            <p class="image-caption">Flujo del algoritmo de asignación</p>
           </div>
         </div>
         
-        <h3>Asignación Inteligente de Tareas</h3>
+        <h3>Algoritmo Divide y Vencerás</h3>
         <div class="content-grid">
           <div>
-            <p>El sistema utiliza un algoritmo de asignación óptima que considera:</p>
-            <ul>
-              <li><strong>Habilidades del empleado:</strong> Coincidencia con los requisitos de la tarea</li>
-              <li><strong>Carga de trabajo actual:</strong> Distribución equitativa</li>
-              <li><strong>Disponibilidad:</strong> Empleados con menor carga primero</li>
-              <li><strong>Experiencia:</strong> Prioriza empleados con experiencia relevante</li>
-            </ul>
+            <p>Para la distribución equitativa de carga de trabajo:</p>
+            <ol>
+              <li><strong>Dividir</strong> - Separar empleados por departamento</li>
+              <li><strong>Conquistar</strong> - Asignar tareas dentro de cada grupo</li>
+              <li><strong>Combinar</strong> - Ajustar entre departamentos si es necesario</li>
+            </ol>
             
-            <div class="tip-box">
-              <strong>Consejo:</strong> Revise regularmente la carga de trabajo de los empleados para evitar saturación y mantener la productividad.
+            <div class="code-example">
+// Pseudocódigo del algoritmo<br>
+public void distribuirCarga() {<br>
+&nbsp;&nbsp;if (empleados.size() <= 1) return;<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;List<Empleado> mitad1 = dividir(empleados, 0, mitad);<br>
+&nbsp;&nbsp;List<Empleado> mitad2 = dividir(empleados, mitad, empleados.size());<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;distribuirCarga(mitad1);<br>
+&nbsp;&nbsp;distribuirCarga(mitad2);<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;combinar(mitad1, mitad2);<br>
+}
             </div>
           </div>
           
           <div class="image-container">
             <div class="image-placeholder">
-              [Algoritmo de asignación]
+              [Algoritmo divide y vencerás]
             </div>
-            <p class="image-caption">Diagrama del algoritmo de asignación</p>
+            <p class="image-caption">Visualización del algoritmo recursivo</p>
           </div>
         </div>
       </div>
@@ -615,60 +980,165 @@ public class Main {<br>
       <div class="section-content">
         <div class="content-grid">
           <div>
-            <p>El sistema genera diversos reportes para facilitar la toma de decisiones:</p>
-            
+            <h3>Métricas Disponibles</h3>
             <div class="feature-list">
               <div class="feature-item">
-                <strong>Tareas Pendientes</strong><br>
-                Número y tiempo estimado total
+                <strong>Eficiencia General</strong><br>
+                Tasa de finalización de tareas
               </div>
               <div class="feature-item">
-                <strong>Eficiencia por Departamento</strong><br>
-                Métricas de productividad por área
+                <strong>Tiempo Promedio</strong><br>
+                Duración media por tipo de tarea
               </div>
               <div class="feature-item">
-                <strong>Carga de Trabajo</strong><br>
-                Distribución entre empleados
+                <strong>Carga por Departamento</strong><br>
+                Distribución de trabajo por área
               </div>
               <div class="feature-item">
-                <strong>Tiempos de Procesamiento</strong><br>
-                Promedios y tendencias
+                <strong>Empleados Más Productivos</strong><br>
+                Ranking por tareas completadas
               </div>
             </div>
           </div>
           
           <div class="image-container">
             <div class="image-placeholder">
-              [Ejemplo de reporte]
+              [Ejemplo de dashboard]
             </div>
-            <p class="image-caption">Ejemplo de reporte estadístico generado</p>
+            <p class="image-caption">Dashboard de estadísticas del sistema</p>
           </div>
         </div>
         
-        <h3>Acceso a Estadísticas</h3>
+        <h3>Reportes Automáticos</h3>
+        <div class="content-grid">
+          <div>
+            <p>El sistema genera reportes en los siguientes intervalos:</p>
+            <ul>
+              <li><strong>Diario</strong> - Resumen de actividades del día</li>
+              <li><strong>Semanal</strong> - Tendencias y métricas acumuladas</li>
+              <li><strong>Mensual</strong> - Análisis de productividad y eficiencia</li>
+              <li><strong>Bajo Demanda</strong> - Reportes personalizados</li>
+            </ul>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Ejemplo de reporte mensual]
+            </div>
+            <p class="image-caption">Estructura de reporte mensual generado</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="configuracion">
+      <h2>Configuración del Sistema</h2>
+      <div class="section-content">
+        <h3>Parámetros Configurables</h3>
+        <div class="content-grid">
+          <div>
+            <table class="method-table">
+              <tr>
+                <th>Parámetro</th>
+                <th>Valor Predeterminado</th>
+                <th>Descripción</th>
+              </tr>
+              <tr>
+                <td>MAX_TAREAS_PENDIENTES</td>
+                <td>100</td>
+                <td>Límite máximo de tareas pendientes</td>
+              </tr>
+              <tr>
+                <td>CARGA_MAXIMA_EMPLEADO</td>
+                <td>10</td>
+                <td>Carga máxima por empleado</td>
+              </tr>
+              <tr>
+                <td>TIEMPO_MAXIMO_ESTIMADO</td>
+                <td>480</td>
+                <td>Tiempo máximo estimado por tarea (minutos)</td>
+              </tr>
+              <tr>
+                <td>PRIORIDAD_ALTA_LIMITE</td>
+                <td>3</td>
+                <td>Límite de tareas de alta prioridad simultáneas</td>
+              </tr>
+            </table>
+          </div>
+          
+          <div class="image-container">
+            <div class="image-placeholder">
+              [Archivo de configuración]
+            </div>
+            <p class="image-caption">Estructura del archivo de configuración</p>
+          </div>
+        </div>
+        
+        <h3>Personalización</h3>
+        <div class="tip-box">
+          <strong>Nota:</strong> Los parámetros del sistema pueden ser modificados editando las constantes en las clases correspondientes. Se recomienda realizar backup antes de realizar cambios.
+        </div>
+      </div>
+    </section>
+
+    <section id="resolucion-problemas">
+      <h2>Resolución de Problemas</h2>
+      <div class="section-content">
+        <h3>Problemas Comunes y Soluciones</h3>
+        <div class="content-grid">
+          <div>
+            <div class="warning-box">
+              <strong>Error: "Memoria insuficiente"</strong><br>
+              <strong>Solución:</strong> Aumentar la memoria asignada a la JVM usando -Xmx parameter
+            </div>
+            
+            <div class="warning-box">
+              <strong>Error: "Tarea no encontrada"</strong><br>
+              <strong>Solución:</strong> Verificar que el ID de tarea existe y está correctamente escrito
+            </div>
+          </div>
+          
+          <div>
+            <div class="warning-box">
+              <strong>Error: "Empleado no disponible"</strong><br>
+              <strong>Solución:</strong> Revisar carga de trabajo o agregar más empleados al sistema
+            </div>
+            
+            <div class="warning-box">
+              <strong>Error: "Estructura de datos llena"</strong><br>
+              <strong>Solución:</strong> Completar tareas pendientes o aumentar límites en configuración
+            </div>
+          </div>
+        </div>
+        
+        <h3>Mantenimiento Preventivo</h3>
         <div class="step-by-step">
           <div class="step">
             <div class="step-number">1</div>
             <div class="step-content">
-              Seleccione "Estadísticas" en el menú principal
+              <strong>Backup Regular</strong><br>
+              Exportar datos importantes semanalmente
             </div>
           </div>
           <div class="step">
             <div class="step-number">2</div>
             <div class="step-content">
-              Elija el tipo de reporte deseado
+              <strong>Limpieza de Datos</strong><br>
+              Eliminar tareas antiguas completadas mensualmente
             </div>
           </div>
           <div class="step">
             <div class="step-number">3</div>
             <div class="step-content">
-              Revise la información presentada
+              <strong>Actualización de Empleados</strong><br>
+              Mantener información de empleados actualizada
             </div>
           </div>
           <div class="step">
             <div class="step-number">4</div>
             <div class="step-content">
-              Utilice los datos para optimizar operaciones
+              <strong>Revisión de Estadísticas</strong><br>
+              Monitorear métricas para detectar problemas temprano
             </div>
           </div>
         </div>
@@ -763,6 +1233,7 @@ public class Main {<br>
             <li>Actualice el estado de las tareas conforme avanza</li>
             <li>Utilice las estadísticas para identificar cuellos de botella</li>
             <li>Mantenga actualizada la información de los empleados</li>
+            <li>Realice backups regulares de los datos</li>
           </ul>
         </div>
       </div>
@@ -770,7 +1241,7 @@ public class Main {<br>
   </main>
 
   <footer>
-    Elaborado por el equipo "Yo Este" | Guía de Uso v1.0 | <a href="#inicio" style="color: #80d0d0;">Volver al Inicio</a>
+    Elaborado por el equipo "Yo Este" | Guía de Uso v2.0 | <a href="#inicio" style="color: #80d0d0;">Volver al Inicio</a>
   </footer>
 
   <script>
