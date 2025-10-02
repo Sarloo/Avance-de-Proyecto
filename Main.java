@@ -448,60 +448,44 @@ public class Main {
 
     // Método para procesar una tarea urgente (de la pila)
     private static void procesarTareaUrgente() {
-        System.out.println("\n--- PROCESAR TAREA URGENTE ---"); // Título
-        
-        if (pilaUrgentes.estaVacia()) { // Verificar si la pila está vacía
-            System.out.println("No hay tareas urgentes pendientes"); // Mensaje informativo
-            return; // Salir del método
-        }
-        
-        // Procesar la tarea en la cima de la pila
-        TareaFarmacia tareaProcesada = pilaUrgentes.procesarTarea();
-        
-        if (tareaProcesada != null) { // Si se procesó correctamente
-            System.out.println("Tarea procesada: " + tareaProcesada); // Mostrar tarea procesada
-        } else { // Si no se pudo procesar
-            System.out.println("No hay tareas urgentes pendientes para procesar"); // Mensaje informativo
-        }
+    System.out.println("\n--- PROCESAR TAREA URGENTE ---");
+    
+    if (pilaUrgentes.estaVacia()) {
+        System.out.println("No hay tareas urgentes pendientes");
+        return;
     }
+    
+    TareaFarmacia tarea = pilaUrgentes.cima();
+    pilaUrgentes.completarTarea(tarea.getId());
+    System.out.println("Tarea URGENTE marcada como COMPLETADA: " + tarea.getDescripcion());
+}
 
-    // Método para procesar una receta (de la cola)
-    private static void procesarReceta() {
-        System.out.println("\n--- PROCESAR RECETA ---"); // Título
-        
-        if (colaRecetas.estaVacia()) { // Verificar si la cola está vacía
-            System.out.println("No hay recetas pendientes"); // Mensaje informativo
-            return; // Salir del método
-        }
-        
-        // Procesar la primera receta pendiente en la cola
-        TareaFarmacia recetaProcesada = colaRecetas.procesarTarea();
-        
-        if (recetaProcesada != null) { // Si se procesó correctamente
-            System.out.println("Receta procesada: " + recetaProcesada); // Mostrar receta procesada
-        } else { // Si no se pudo procesar
-            System.out.println("No hay recetas pendientes para procesar"); // Mensaje informativo
-        }
+private static void procesarReceta() {
+    System.out.println("\n--- PROCESAR RECETA ---");
+    
+    if (colaRecetas.estaVacia()) {
+        System.out.println("No hay recetas pendientes");
+        return;
     }
+    
 
-    // Método para procesar una tarea prioritaria
-    private static void procesarTareaPrioritaria() {
-        System.out.println("\n--- PROCESAR TAREA PRIORITARIA ---"); // Título
-        
-        if (colaPrioridad.estaVacia()) { // Verificar si la cola de prioridad está vacía
-            System.out.println("No hay tareas prioritarias pendientes"); // Mensaje informativo
-            return; // Salir del método
-        }
-        
-        // Procesar la tarea con mayor prioridad
-        TareaFarmacia tareaProcesada = colaPrioridad.procesarTarea();
-        
-        if (tareaProcesada != null) { // Si se procesó correctamente
-            System.out.println("Tarea prioritaria procesada: " + tareaProcesada); // Mostrar tarea procesada
-        } else { // Si no se pudo procesar
-            System.out.println("No hay tareas prioritarias pendientes para procesar"); // Mensaje informativo
-        }
+    TareaFarmacia tarea = colaRecetas.frente();
+    colaRecetas.completarReceta(tarea.getId());
+    System.out.println("RECETA marcada como COMPLETADA: " + tarea.getDescripcion());
+}
+
+private static void procesarTareaPrioritaria() {
+    System.out.println("\n--- PROCESAR TAREA PRIORITARIA ---");
+    
+    if (colaPrioridad.estaVacia()) {
+        System.out.println("No hay tareas prioritarias pendientes");
+        return;
     }
+    
+    TareaFarmacia tarea = colaPrioridad.frente();
+    colaPrioridad.completarTarea(tarea.getId());
+    System.out.println("Tarea PRIORITARIA marcada como COMPLETADA: " + tarea.getDescripcion());
+}
 
     // Método para completar una tarea específica por ID
     private static void completarTareaEspecifica() {
